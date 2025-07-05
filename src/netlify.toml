@@ -1,7 +1,7 @@
 [build]
   command = "ng build --configuration=production"
-  # Non specificare 'publish' qui, lascia che il plugin lo gestisca.
+  publish = "dist/aleksander-nikolli-developer/browser"
 
 [[plugins]]
   package = "@netlify/angular-runtime"
-  # disable = false # O semplicemente rimuovi la riga 'disable'
+  # disable = false # Lascia questa riga commentata o rimuovila se non vuoi disabilitare il plugin
