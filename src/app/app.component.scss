@@ -1,0 +1,85 @@
+/* src/app/app.component.scss */
+
+// Variabili SASS
+$accent-color: #00bcd4;
+$text-color-light: #e0e0e0;
+
+/*
+ * Struttura Flexbox per il layout principale.
+ * Questo assicura che il footer stia correttamente in fondo.
+*/
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/*
+ * Contenuto principale
+*/
+.main-content {
+  flex: 1;
+  padding-top: 64px;
+  box-sizing: border-box;
+}
+
+
+/*
+ * ===============================================================
+ * Stili per il pulsante "Scroll to Top"
+ * ===============================================================
+*/
+.scroll-to-top-button {
+  position: fixed;
+
+  /* --- POSIZIONAMENTO ORIZZONTALE --- */
+  /* Queste due righe ancorano il pulsante al lato DESTRO dello schermo */
+  right: 20px;
+  left: auto; /* Assicura che non ci sia un posizionamento a sinistra */
+
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, bottom 0.3s ease-out;
+  background-color: var(--mat-accent-color);
+  box-shadow: 0px 5px 15px rgba(0, 188, 212, 0.4);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 188, 212, 0.6);
+}
+
+/* Visibilità del pulsante */
+.scroll-to-top-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Effetto hover */
+.scroll-to-top-button:hover {
+  background-color: darken($accent-color, 10%);
+  box-shadow: 0px 8px 20px rgba(0, 188, 212, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Icona interna */
+.scroll-to-top-button mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: $text-color-light;
+  text-shadow: 0 0 5px rgba($text-color-light, 0.7), 0 0 10px rgba($accent-color, 0.5);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Stili per mobile */
+@media (max-width: 768px) {
+  .scroll-to-top-button {
+    right: 15px;
+    width: 48px;
+    height: 48px;
+  }
+  .scroll-to-top-button mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}

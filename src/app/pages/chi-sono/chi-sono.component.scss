@@ -1,0 +1,267 @@
+/* src/app/pages/chi-sono/chi-sono.component.scss */
+@use '@angular/material' as mat; // Importa Angular Material SASS
+
+// Variabili di tema del tuo progetto (devono corrispondere a quelle globali)
+// Queste dovrebbero idealmente venire importate da un file di variabili SASS condiviso,
+// es: @import 'src/styles/variables';
+$dark-bg: #1a1a2e;
+$accent-color: #00bcd4; // Colore accentato (ciano)
+$text-color: #e0e0e0; // Colore del testo chiaro
+$light-gray: #a0a0a0; // Grigio chiaro
+$primary-color: #1976d2; // Colore primary di Angular Material (blu)
+$shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
+
+.chi-sono-card {
+  margin: 2rem auto;
+  max-width: 900px;
+  padding: 1.5rem;
+  background: lighten($dark-bg, 3%);
+  color: $text-color;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba($accent-color, 0.5); 
+  border: 1px solid rgba($accent-color, 0.2);
+
+  mat-card-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: $accent-color;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      // Il colore primary è già impostato nell'HTML con color="primary"
+    }
+  }
+
+  mat-card-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: $light-gray; // Colore del testo generale nel contenuto della card
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    strong {
+      color: $accent-color;
+      font-weight: 700;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      li {
+        margin-bottom: 0.7rem;
+        position: relative;
+        &::before {
+          content: '•';
+          color: $accent-color;
+          position: absolute;
+          left: -1rem;
+          top: 0;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  mat-chip-listbox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+
+    mat-chip-row {
+      padding: 0.5rem 1rem;
+      font-size: 0.95rem;
+      border-radius: 20px;
+      background-color: rgba($accent-color, 0.2);
+      border: 1px solid rgba($accent-color, 0.4);
+      transition: all 0.2s ease-in-out;
+
+      // Selettore per il testo all'interno del chip, usando ::ng-deep per penetrare Shadow DOM
+      // e includendo entrambi i selettori per la massima compatibilità con diverse versioni di Material.
+      ::ng-deep .mat-mdc-chip-action-label,
+      ::ng-deep .mdc-evolution-chip__text-content {
+          color: $text-color; // Applica il colore chiaro
+      }
+
+      &.mdc-evolution-chip--selected {
+        background-color: $accent-color;
+        // Quando selezionato, il testo è scuro sul colore accentuato
+        // Usiamo ::ng-deep anche qui per assicurare che il colore sia applicato correttamente.
+        ::ng-deep .mat-mdc-chip-action-label,
+        ::ng-deep .mdc-evolution-chip__text-content {
+            color: $dark-bg; 
+        }
+        font-weight: 600;
+        box-shadow: 0 0 12px rgba($accent-color, 0.8);
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        background-color: rgba($accent-color, 0.3);
+        box-shadow: 0 5px 15px rgba($accent-color, 0.4);
+      }
+    }
+  }
+
+  .mat-divider-margin {
+    margin: 2rem 0;
+    background-color: rgba($accent-color, 0.3);
+  }
+
+  // Stili per la nuova sezione degli attestati
+  .attestati-intro {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: $text-color;
+    font-size: 1.05rem;
+  }
+
+  .attestati-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // Griglia responsiva
+    gap: 2rem; // Spazio tra gli elementi della griglia
+    justify-content: center; // Centra gli elementi nella griglia
+    margin-top: 1.5rem;
+  }
+
+  .attestato-item {
+    background-color: lighten($dark-bg, 5%); // Sfondo leggermente più chiaro
+    border-radius: 10px;
+    overflow: hidden; // Assicura che l'immagine non sporga dai bordi arrotondati
+    text-align: center;
+    padding-bottom: 1rem; // Spazio sotto la didascalia
+    border: 1px solid rgba($accent-color, 0.3); // Bordo sottile tech
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // Transizione per effetto hover
+
+    // Ombra più accesa e con bagliore per un look tech
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 15px rgba($accent-color, 0.4);
+
+    &:hover {
+      transform: translateY(-8px); // Sollevamento all'hover
+      // Bagliore più intenso all'hover
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8), 0 0 30px $shadow-glow-color;
+    }
+  }
+
+  .attestato-img {
+    width: 100%;
+    height: auto;
+    display: block; // Rimuove spazi extra sotto l'immagine
+    border-radius: 10px 10px 0 0; // Bordi arrotondati solo in alto
+    // Effetto filtro per un look più "tech" e coeso
+    filter: brightness(0.9) contrast(1.1); 
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: brightness(1) contrast(1.2); // Rimuove un po' di filtro all'hover per mostrare più dettagli
+    }
+  }
+
+  .attestato-caption {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: $accent-color; // Didascalia in colore accentato
+    text-shadow: 0 0 8px rgba($accent-color, 0.3); // Ombra luminosa per la didascalia
+  }
+
+  .final-note {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background-color: lighten($dark-bg, 5%);
+    border: 1px solid rgba($accent-color, 0.4);
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 15px rgba($accent-color, 0.4);
+
+    p {
+      font-weight: 500;
+      color: $text-color;
+      font-size: 1.1rem;
+
+      .contact-link {
+        color: $accent-color; // Colore accentato per il link
+        text-decoration: none; // Rimuove la sottolineatura di default
+        font-weight: 700; // Rende il testo del link più spesso
+        text-shadow: 0 0 10px rgba($accent-color, 0.6); // Bagliore per il link
+        transition: text-shadow 0.3s ease, transform 0.3s ease; // Transizione per l'hover
+        display: inline-block; // Necessario per applicare transform
+
+        &:hover {
+          text-shadow: 0 0 15px rgba($accent-color, 0.9); // Bagliore più intenso all'hover
+          transform: scale(1.05); // Leggero ingrandimento all'hover
+          cursor: pointer;
+        }
+      }
+
+      strong {
+        // Questi strong sono per il testo normale nel final-note, non il link
+        color: $accent-color; 
+        text-shadow: 0 0 10px rgba($accent-color, 0.5);
+      }
+    }
+  }
+}
+
+// Media Query per la responsività
+@media (max-width: 768px) {
+  .chi-sono-card {
+    margin: 1.5rem 1rem;
+    padding: 1rem;
+
+    mat-card-title {
+      font-size: 1.4rem;
+      mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    mat-card-content {
+      font-size: 1rem;
+      ul li {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    mat-chip-listbox mat-chip-row {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      // Anche qui, assicurati che il testo del chip sia correttamente stilizzato per il mobile
+      ::ng-deep .mat-mdc-chip-action-label,
+      ::ng-deep .mdc-evolution-chip__text-content {
+        color: $text-color; 
+      }
+    }
+
+    .mat-divider-margin {
+      margin: 1.5rem 0;
+    }
+
+    .attestati-grid {
+      grid-template-columns: 1fr; // Una colonna su schermi piccoli
+      gap: 1.5rem;
+    }
+    
+    .attestato-item {
+      padding-bottom: 0.8rem;
+      .attestato-caption {
+        font-size: 1rem;
+      }
+    }
+
+    .final-note {
+      margin-top: 2rem; 
+      padding: 1.2rem;
+      font-size: 1rem;
+    }
+  }
+}

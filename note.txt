@@ -1,0 +1,114 @@
+Per avviare in modalità sviluppo con SSR:
+npm run dev:ssr
+
+
+ng generate module pages/home --route home --module app
+ng generate component pages/home --module pages/home
+
+
+ng generate module pages/chi-sono --route chi-sono --module app
+ng generate component pages/chi-sono --module pages/chi-sono
+
+
+ng generate module pages/contatti --route contatti --module app
+ng generate component pages/contatti --module pages/contatti
+
+
+ng generate module pages/progetti --route progetti --module app
+ng generate component pages/progetti --module pages/progetti
+
+ng generate module pages/progetti/progetto-detail --route progetti --module app
+
+
+ng generate module pages/servizi --route servizi --module app
+ng generate component pages/servizi --module pages/servizi
+
+
+ng generate module shared/shared --flat
+
+ng generate module shared/shared/material --flat
+
+ng generate component shared/components/footer --skip-tests --flat --module shared/shared
+ng generate component shared/components/navbar --skip-tests --flat --module shared/shared
+ng generate component shared/components/quote-box --skip-tests --flat --module shared/shared
+ng generate component shared/components/why-chose-me --skip-tests --flat --module shared/shared
+
+ng generate service shared/services/shared --skip-tests
+
+
+
+STRUTTURA
+src/app/
+├── app-routing.module.ts
+├── app.component.html
+├── app.component.scss
+├── app.component.spec.ts
+├── app.component.ts
+├── app.module.ts
+├── app.module.server.ts           // Modulo per il Server-Side Rendering (SSR)
+├── pages/
+│   ├── chi-sono/
+│   │   ├── chi-sono-routing.module.ts  // Gestisce le route interne al modulo 'chi-sono'
+│   │   ├── chi-sono.component.html
+│   │   ├── chi-sono.component.scss
+│   │   ├── chi-sono.component.spec.ts
+│   │   ├── chi-sono.component.ts
+│   │   └── chi-sono.module.ts          // Modulo principale per la sezione 'chi-sono'
+│   ├── contatti/
+│   │   ├── contatti-routing.module.ts
+│   │   ├── contatti.component.html
+│   │   ├── contatti.component.scss
+│   │   ├── contatti.component.spec.ts
+│   │   ├── contatti.component.ts
+│   │   └── contatti.module.ts
+│   ├── home/
+│   │   ├── home-routing.module.ts
+│   │   ├── home.component.html
+│   │   ├── home.component.scss
+│   │   ├── home.component.spec.ts
+│   │   ├── home.component.ts
+│   │   └── home.module.ts
+│   ├── progetti/
+│   │   ├── progetti-routing.module.ts  // Questo file conterrà la rotta per il dettaglio
+│   │   ├── progetti.component.html
+│   │   ├── progetti.component.scss
+│   │   ├── progetti.component.spec.ts
+│   │   ├── progetti.component.ts
+│   │   ├── progetti.module.ts
+│   │   └── progetto-detail/            // Modulo e componente per il dettaglio progetto
+│   │       ├── progetto-detail-routing.module.ts
+│   │       ├── progetto-detail.component.html
+│   │       ├── progetto-detail.component.scss
+│   │       ├── progetto-detail.component.spec.ts
+│   │       ├── progetto-detail.component.ts
+│   │       └── progetto-detail.module.ts
+│   └── servizi/
+│       ├── servizi-routing.module.ts
+│       ├── servizi.component.html
+│       ├── servizi.component.scss
+│       ├── servizi.component.spec.ts
+│       ├── servizi.component.ts
+│       └── servizi.module.ts
+└── shared/                               // Cartella per elementi riutilizzabili e condivisi
+    ├── components/                       // Contiene i componenti condivisi
+    │   ├── footer/
+    │   │   ├── footer.component.html
+    │   │   ├── footer.component.scss
+    │   │   └── footer.component.ts
+    │   ├── navbar/
+    │   │   ├── navbar.component.html
+    │   │   ├── navbar.component.scss
+    │   │   └── navbar.component.ts
+    │   ├── quote-box/
+    │   │   ├── quote-box.component.html
+    │   │   ├── quote-box.component.scss
+    │   │   └── quote-box.component.ts
+    │   └── why-chose-me/
+    │       ├── why-chose-me.component.html
+    │       ├── why-chose-me.component.scss
+    │       └── why-chose-me.component.ts
+    ├── services/                         // Contiene i servizi condivisi
+    │   └── shared.service.ts
+    └── shared/                           // Contiene i moduli di configurazione condivisi
+        ├── material.module.ts            // Modulo per l'import/export di Angular Material
+        └── shared.module.ts              // Modulo principale per dichiarare ed esportare componenti/servizi condivisi

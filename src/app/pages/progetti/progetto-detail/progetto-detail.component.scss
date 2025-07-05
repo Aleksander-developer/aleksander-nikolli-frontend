@@ -1,0 +1,268 @@
+/* src/app/pages/progetti/progetto-detail/progetto-detail.component.scss */
+@use '@angular/material' as mat;
+
+// Variabili di tema del tuo progetto (devono corrispondere a quelle globali)
+$dark-bg: #1a1a2e;
+$accent-color: #00bcd4; // Colore accentato (ciano)
+$text-color: #e0e0e0; // Colore del testo chiaro
+$light-gray: #a0a0a0; // Grigio chiaro
+$primary-color: #1976d2; // Colore primary di Angular Material (blu)
+$shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
+$error-color: #ff5252; // Rosso per gli errori (già definito)
+$error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfondo dell'errore
+
+.project-detail-section {
+  padding: 3rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 120px);
+  font-family: 'Roboto Mono', monospace;
+}
+
+.project-detail-card {
+  max-width: 900px;
+  width: 100%;
+  background: lighten($dark-bg, 3%);
+  color: $text-color;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba($accent-color, 0.5); 
+  border: 1px solid rgba($accent-color, 0.2);
+  text-align: center;
+  padding: 1.5rem;
+
+  mat-card-header {
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    .mat-mdc-card-header-text {
+      margin: 0;
+    }
+    mat-card-title {
+      font-size: 2.2rem;
+      color: $accent-color;
+      text-shadow: 0 0 18px rgba($accent-color, 0.7);
+      font-weight: 700;
+    }
+  }
+
+  .project-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    filter: brightness(0.9) contrast(1.1);
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: brightness(1) contrast(1.2);
+    }
+  }
+
+  mat-card-content {
+    text-align: left;
+    padding: 0 1rem;
+
+    .description {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: $light-gray;
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: $accent-color;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba($accent-color, 0.4);
+      font-weight: 600;
+    }
+
+    .tech-chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      justify-content: center;
+
+      mat-chip-row {
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+        border-radius: 20px;
+        background-color: rgba($accent-color, 0.15);
+        border: 1px solid rgba($accent-color, 0.3);
+        transition: all 0.2s ease-in-out;
+
+        ::ng-deep .mat-mdc-chip-action-label,
+        ::ng-deep .mdc-evolution-chip__text-content {
+          color: $text-color;
+        }
+
+        &.mdc-evolution-chip--selected {
+          background-color: $accent-color;
+          ::ng-deep .mat-mdc-chip-action-label,
+          ::ng-deep .mdc-evolution-chip__text-content {
+            color: $dark-bg;
+          }
+          box-shadow: 0 0 10px rgba($accent-color, 0.7);
+        }
+
+        &:hover {
+          transform: translateY(-3px);
+          background-color: rgba($accent-color, 0.25);
+          box-shadow: 0 5px 15px rgba($accent-color, 0.4);
+        }
+      }
+    }
+  }
+
+  .project-links {
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border-top: 1px solid rgba($accent-color, 0.1);
+    margin-top: 2rem;
+
+    a {
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+
+      &.mat-raised-button {
+        background-color: $accent-color;
+        color: $dark-bg;
+        box-shadow: 0 5px 20px rgba($accent-color, 0.5);
+        &:hover {
+          background-color: darken($accent-color, 10%);
+          box-shadow: 0 8px 30px rgba($accent-color, 0.8);
+          transform: translateY(-3px);
+        }
+      }
+
+      &.mat-stroked-button {
+        border-color: $primary-color;
+        color: $primary-color;
+        box-shadow: 0 3px 10px rgba($primary-color, 0.3);
+        &:hover {
+          background-color: rgba($primary-color, 0.1);
+          box-shadow: 0 5px 15px rgba($primary-color, 0.5);
+          transform: translateY(-3px);
+        }
+      }
+    }
+  }
+
+  .mat-divider-margin {
+    margin: 2.5rem 0;
+    background-color: rgba($accent-color, 0.3);
+  }
+
+  .back-button {
+    font-weight: 600;
+    color: $light-gray;
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      color: $accent-color;
+      transform: translateX(-5px);
+    }
+  }
+}
+
+.loading-spinner, .error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: lighten($dark-bg, 5%);
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+  color: $text-color;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+  }
+  p {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}
+
+.error-message {
+  // --- MODIFICHE QUI ---
+  border: 1px solid $error-color;
+  background-color: rgba($error-dark-color, 0.2);
+  color: $error-color;
+  box-shadow: 0 5px 20px rgba($error-dark-color, 0.5);
+  // --- FINE MODIFICHE ---
+}
+
+
+/* --- Media Query per Responsività --- */
+@media (max-width: 768px) {
+  .project-detail-section {
+    padding: 2rem 1rem;
+    align-items: center;
+  }
+
+  .project-detail-card {
+    padding: 1rem;
+    mat-card-header {
+      mat-card-title {
+        font-size: 1.8rem;
+      }
+    }
+    .description {
+      font-size: 1rem;
+    }
+    h3 {
+      font-size: 1.3rem;
+    }
+    mat-card-content {
+      padding: 0 0.5rem;
+    }
+    .tech-chips-container {
+      justify-content: center;
+      mat-chip-row {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+    .project-links {
+      flex-direction: column;
+      gap: 1rem;
+      a {
+        width: 100%;
+        padding: 0.7rem 1rem;
+      }
+    }
+    .back-button {
+      font-size: 0.9rem;
+    }
+  }
+}

@@ -1,0 +1,140 @@
+/* src/app/pages/contatti/contatti.component.scss */
+@use '@angular/material' as mat;
+
+// Variabili di tema del tuo progetto (devono corrispondere a quelle globali)
+$dark-bg: #1a1a2e;
+$accent-color: #00bcd4; // Colore accentato (ciano)
+$text-color: #e0e0e0; // Colore del testo chiaro
+$light-gray: #a0a0a0; // Grigio chiaro
+$primary-color: #1976d2; // Colore primary di Angular Material (blu)
+$error-color: #ff5252; // Rosso per gli errori
+$success-color: #00e676; // Verde vibrante per i successi
+$shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
+
+.contatti-container {
+  max-width: 700px;
+  margin: 3rem auto; // Più margine per centrare meglio
+  padding: 2.5rem; // Più padding
+  background: lighten($dark-bg, 3%); // Sfondo leggermente più chiaro del dark-bg
+  color: $text-color; // Testo chiaro
+  border-radius: 12px;
+  // Ombra più decisa e con bagliore per un look tech
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba($accent-color, 0.5); 
+  border: 1px solid rgba($accent-color, 0.2); // Bordo sottile tech
+  font-family: 'Roboto Mono', monospace; // Applica il font tech
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem; // Più spazio sotto il titolo
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 1.5px; // Leggermente più spaziatura
+  color: $accent-color; // Titolo in colore accentato
+  text-shadow: 0 0 15px rgba($accent-color, 0.6); // Bagliore per il titolo
+  font-size: 2.2rem; // Dimensione maggiore per il titolo
+}
+
+form.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem; // Più spazio tra i campi
+
+  mat-form-field {
+    width: 100%;
+
+    // Stile per l'outline (bordo) del campo quando non è focalizzato
+    .mat-form-field-outline {
+      color: rgba($accent-color, 0.5); // Outline in colore accentato semi-trasparente
+    }
+
+    // Stile per l'outline quando il campo è focalizzato (attivo)
+    &.mat-focused .mat-form-field-outline {
+      color: $accent-color; // Outline più intenso quando focalizzato
+    }
+
+    .mat-form-field-label {
+      color: $light-gray !important; // Label in grigio chiaro
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.05rem; // Dimensione leggermente maggiore per la label
+    }
+
+    input, textarea {
+      color: $text-color; // Testo input/textarea bianco/chiaro
+      background-color: transparent;
+      font-family: 'Roboto Mono', monospace;
+      caret-color: $accent-color; // Cursore in colore accentato
+      font-size: 1.1rem; // Dimensione del testo input
+    }
+
+    .mat-error {
+      font-size: 0.9rem; // Dimensione errore leggermente maggiore
+      color: $error-color; // Rosso per gli errori
+      font-family: 'Roboto Mono', monospace;
+      margin-top: 0.5rem; // Spazio sopra l'errore
+    }
+  }
+
+  .success-message {
+    margin: 1.5rem 0;
+    padding: 15px 25px;
+    background-color: rgba($success-color, 0.2); // Sfondo verde semi-trasparente
+    color: $success-color; // Testo verde vibrante
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba($success-color, 0.5); // Ombra con bagliore verde
+    text-align: center;
+    font-size: 1.2rem; // Dimensione maggiore
+    border: 1px solid $success-color; // Bordo verde
+  }
+
+  button {
+    align-self: center;
+    width: 180px; // Larghezza maggiore per il bottone
+    height: 50px; // Altezza maggiore
+    font-weight: 700;
+    letter-spacing: 1.5px; // Più spaziatura
+    font-family: 'Roboto Mono', monospace;
+    border-radius: 8px; // Bordi arrotondati
+    text-transform: uppercase; // Testo in maiuscolo
+    
+    // Colore primario di Angular Material, ma con un tocco tech
+    background-color: $primary-color; 
+    box-shadow: 0 5px 20px rgba($primary-color, 0.4); // Ombra con bagliore blu
+
+    &:hover:not(:disabled) {
+      background-color: darken($primary-color, 10%); // Scuro all'hover
+      box-shadow: 0 8px 30px rgba($primary-color, 0.7); // Ombra più intensa all'hover
+      transform: translateY(-3px); // Leggero sollevamento
+      transition: all 0.3s ease; // Transizione per l'hover
+    }
+
+    &:disabled {
+      background-color: $light-gray; // Grigio chiaro quando disabilitato
+      color: darken($light-gray, 30%);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .contatti-container {
+    margin: 1.5rem; // Margine su mobile
+    padding: 1.5rem;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    form.contact-form {
+      gap: 1.2rem;
+
+      button {
+        width: 100%;
+        height: 45px;
+      }
+    }
+  }
+}

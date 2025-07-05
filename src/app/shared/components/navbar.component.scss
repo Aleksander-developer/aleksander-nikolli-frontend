@@ -1,0 +1,95 @@
+// src/app/shared/components/navbar/navbar.component.scss
+@use '@angular/material' as mat;
+
+// Variabili SASS per colori coerenti con il tema Material
+$primary-color: #3f51b5; // Corrisponde a Indigo 700 (primary)
+$accent-color: #00bcd4;  // Corrisponde a Cyan 500 (accent)
+$darkest-bg: #141428;    // Toolbar molto scura (da styles.scss)
+$brand-link-color: #58a6ff; // Un blu brillante per il brand (GitHub-like)
+
+// Variabili mancanti che causavano l'errore
+$text-color: #e0e0e0;    // Testo chiaro (da styles.scss) - AGGIUNTO
+$card-bg: #2e2e4a;       // Sfondo più scuro per le card (da styles.scss) - AGGIUNTO
+
+.toolbar-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $darkest-bg !important; // Sfondo scuro, tech vibe
+  padding: 0 1rem;
+  font-family: 'Roboto Mono', monospace; // Font mono-spaziato per la navbar
+  height: 64px; // Altezza standard per la toolbar
+  position: fixed; // Rende la navbar fissa in alto
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; // Assicura che sia sopra gli altri contenuti
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); // Ombra leggera
+}
+
+.brand-link {
+  font-size: 1.5rem; // Dimensione più grande per il brand
+  font-weight: bold;
+  color: $brand-link-color; // Colore specifico per il brand
+  text-decoration: none;
+  transition: color 0.3s ease; // Transizione per l'hover
+
+  &:hover {
+    color: lighten($brand-link-color, 10%); // Illumina all'hover
+  }
+}
+
+.nav-links-container {
+  display: flex; // Per allineare i link orizzontalmente
+  gap: 1rem; // Spazio tra i link
+}
+
+.desktop-links a {
+  color: $text-color; // Testo chiaro per i link
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease; // Transizioni per hover
+
+  &:hover {
+    color: $accent-color; // Colore accento all'hover
+    transform: translateY(-2px); // Lieve sollevamento
+  }
+}
+
+.menu-button {
+  display: none; // Nascosto di default su desktop
+  color: $text-color; // Colore dell'icona del menu
+}
+
+// Media query per dispositivi mobili
+@media (max-width: 768px) {
+  .desktop-links {
+    display: none; // Nasconde i link desktop
+  }
+
+  .menu-button {
+    display: block; // Mostra il bottone del menu
+  }
+
+  .brand-link {
+    font-size: 1.2rem; // Riduci dimensione brand su mobile
+  }
+}
+
+// Stili per il menu di Angular Material (mat-menu)
+.mat-menu-panel {
+  background-color: $card-bg; // Sfondo scuro per il menu
+  border: 1px solid rgba($accent-color, 0.2); // Bordo sottile tech
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.mat-menu-item {
+  color: $text-color; // Testo chiaro per le voci del menu
+  font-family: 'Roboto Mono', monospace;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: lighten($card-bg, 5%); // Scurisci leggermente all'hover
+    color: $accent-color; // Colore accento all'hover
+  }
+}

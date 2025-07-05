@@ -1,0 +1,96 @@
+// src/app/shared/components/why-chose-me/why-chose-me.component.scss
+@use '@angular/material' as mat;
+
+// Variabili SASS per colori coerenti con il tema Material
+$accent-color: #00bcd4;  // Corrisponde a Cyan 500 (accent)
+$text-color: #e0e0e0;    // Testo chiaro (da styles.scss)
+$card-bg: #2e2e4a;       // Sfondo più scuro per le card (da styles.scss)
+
+.why-choose-me-card {
+  background-color: $card-bg !important; // Sfondo scuro per le card (come definito in styles.scss)
+  color: $text-color; // Testo chiaro (come definito in styles.scss)
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  max-width: 800px;
+  border: 1px solid #4a4a6e; // Bordo sottile (come definito in styles.scss)
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4); // Ombre (come definito in styles.scss)
+
+  mat-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .header-icon {
+    color: var(--mat-accent-color); // Colore accento per l'icona nell'header
+    margin-right: 10px;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  mat-card-title {
+    font-size: 1.8rem;
+    color: var(--mat-accent-color); // Colore accento per il titolo
+    font-family: 'Share Tech Mono', monospace; // Font tech per i titoli
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+
+    li {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .negative-icon {
+    color: #ff5252; // Un rosso per gli elementi negativi
+    margin-right: 8px;
+  }
+
+  .positive-icon {
+    color: #00e676; // Un verde brillante per gli elementi positivi
+    margin-right: 8px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .conclusione {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--mat-accent-color); // Colore accento per la conclusione
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .why-choose-me-card {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  mat-card-title {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .conclusione {
+    font-size: 1.1rem;
+  }
+}

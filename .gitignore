@@ -1,15 +1,16 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+/dist/
+/tmp/
+/out-tsc/
+/bazel-out/
 
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+.report/ # Diagnostic reports (https://nodejs.org/api/report.html)
+.cache/ # General cache directories
 
 # IDEs and editors
 .idea/
@@ -26,13 +27,20 @@ yarn-error.log
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
+.history/
+
+# Angular specific
+/.angular/ # Angular CLI cache and other generated files
+/coverage/ # Test coverage reports
+e2e/ # End-to-end test folder (if not part of src)
+karma.conf.js # Karma test runner config
+tsconfig.spec.json # TypeScript config for tests
+.eslintcache # ESLint cache file
+src/environments/*.bak # Backup files for environment configs
 
 # Miscellaneous
-/.angular/cache
 .sass-cache/
 /connect.lock
-/coverage
 /libpeerconnection.log
 testem.log
 /typings
@@ -40,3 +48,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Environment variables
+.env # IMPORTANT: Do not commit sensitive environment variables

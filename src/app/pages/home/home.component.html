@@ -1,0 +1,62 @@
+<!-- src/app/pages/home/home.component.html -->
+
+<!-- HERO SECTION -->
+<section class="hero-section mat-elevation-z4">
+  <div class="hero-content">
+    <h1>Ciao, sono Aleksander <span class="emoji-tech">👨‍💻</span></h1>
+    <p>Frontend & Backend Developer appassionato di tecnologia e codice pulito.</p>
+    <button mat-stroked-button color="primary" routerLink="/contatti" aria-label="Contattami">Contattami</button>
+  </div>
+</section>
+
+<!-- WHY CHOOSE ME SECTION -->
+<!-- Inseriamo il componente WhyChooseMeComponent qui -->
+<app-why-chose-me></app-why-chose-me>
+
+<!-- QUOTE BOX SECTION -->
+<!-- Inseriamo il componente QuoteBoxComponent qui -->
+<app-quote-box></app-quote-box>
+
+
+<!-- TECH STACK SECTION -->
+<section class="tech-section">
+  <h2 class="section-title">Competenze Tecnologiche</h2>
+  <div class="tech-grid">
+    <!-- Assicurati che techList sia definito in home.component.ts -->
+    <mat-card *ngFor="let tech of techList" class="tech-tile mat-elevation-z2">
+      <mat-card-content class="tech-content">{{ tech }}</mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+
+<!-- FEATURED PROJECTS SECTION -->
+<!-- Ho lasciato questa sezione commentata come nel tuo codice.
+     Se la decommenti, assicurati che 'featuredProjects' sia definito in home.component.ts
+     e che le immagini siano disponibili nel percorso specificato. -->
+<!--
+<section class="featured-projects-section">
+  <h2 class="section-title">Progetti in Evidenza</h2>
+  <div class="projects-grid">
+    <mat-card *ngFor="let project of featuredProjects" class="project-card mat-elevation-z3">
+      <img mat-card-image [src]="project.image" [alt]="project.title" />
+      <mat-card-header>
+        <mat-card-title>{{ project.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ project.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" [routerLink]="project.link">Vedi dettagli</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>
+-->
+
+<!-- CTA SECTION -->
+<section class="cta-section mat-elevation-z2">
+  <h2>Hai un progetto in mente?</h2>
+  <p>Parliamone! Posso aiutarti a costruirlo da zero.</p>
+  <button mat-raised-button color="accent" routerLink="/contatti">Scrivimi ora</button>
+</section>

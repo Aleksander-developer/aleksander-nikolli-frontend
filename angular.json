@@ -33,20 +33,20 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/favicon.ico",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "prerender": true
           },
           "configurations": {
             "production": {
@@ -80,6 +80,10 @@
             },
             "development": {
               "buildTarget": "Aleksander-Nikolli-Developer:build:development"
+            },
+            "development-ssr": {
+              "buildTarget": "Aleksander-Nikolli-Developer:build:development",
+              "port": 4200
             }
           },
           "defaultConfiguration": "development"
@@ -97,16 +101,56 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/favicon.ico",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/aleksander-nikolli-developer/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "none"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "routesFile": "prerender-routes.txt"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "Aleksander-Nikolli-Developer:build:production",
+              "serverTarget": "Aleksander-Nikolli-Developer:server:production"
+            },
+            "development": {
+              "buildTarget": "Aleksander-Nikolli-Developer:build:development",
+              "serverTarget": "Aleksander-Nikolli-Developer:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

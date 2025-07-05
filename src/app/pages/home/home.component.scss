@@ -1,0 +1,350 @@
+// src/app/pages/home/home.component.scss
+@use '@angular/material' as mat;
+
+// Importa le variabili del tema definite in src/styles.scss
+// Questo è fondamentale per mantenere la coerenza del tema
+// Assicurati che queste variabili siano accessibili o definiscile qui se non lo sono.
+// Per semplicità, useremo i valori esadecimali che corrispondono al tema definito.
+$primary-color: #3f51b5; // Corrisponde a Indigo 700 (primary)
+$accent-color: #00bcd4;  // Corrisponde a Cyan 500 (accent)
+$warn-color: #f44336;    // Corrisponde a Red 500 (warn)
+
+$dark-bg: #1a1a2e;       // Sfondo scuro quasi nero (da styles.scss)
+$card-bg: #2e2e4a;       // Sfondo più scuro per le card (da styles.scss)
+$text-color: #e0e0e0;    // Testo chiaro (da styles.scss)
+
+.section-title {
+  font-family: 'Share Tech Mono', monospace; // Usa Share Tech Mono per i titoli di sezione
+  font-size: 2.2rem;
+  color: $accent-color; // Colore accento
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 8px rgba($accent-color, 0.5); /* Effetto luminoso tech */
+}
+
+/* HERO SECTION */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  // Gradiente scuro coerente con la vibe tech
+  background: linear-gradient(135deg, $dark-bg 0%, darken($dark-bg, 5%) 100%);
+  color: $text-color;
+  text-align: center;
+  padding: 4rem 2rem;
+  border-bottom: 2px solid $accent-color; // Linea di separazione tech
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6); // Ombra pronunciata
+
+  .hero-content {
+    max-width: 900px;
+  }
+
+  h1 {
+    font-family: 'Fira Code', monospace; // Usa Fira Code per il titolo principale
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: $accent-color; // Colore accento
+    text-shadow: 0 0 10px rgba($accent-color, 0.7);
+  }
+
+  .emoji-tech {
+    display: inline-block;
+    animation: bounce 2s infinite; // Animazione leggera per l'emoji
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: lighten($text-color, 10%);
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+    border-radius: 0.5rem;
+    border: 2px solid $primary-color; // Bordo con colore primary
+    color: $primary-color; // Testo con colore primary
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $text-color;
+      box-shadow: 0 0 15px rgba($primary-color, 0.7);
+    }
+  }
+}
+
+/* TECH STACK SECTION */
+.tech-section {
+  padding: 3rem 2rem;
+  background-color: $dark-bg; // Sfondo scuro per la sezione tech
+  text-align: center;
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); // Colonne adattive
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .tech-tile {
+    text-align: center;
+    background-color: $card-bg !important; // Sfondo card scuro
+    color: $accent-color; // Colore testo accento
+    padding: 1rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgba($accent-color, 0.3); // Bordo sottile con accento
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    height: 100%; // fa prendere tutta l'altezza possibile nella griglia
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 6px 15px rgba($accent-color, 0.3);
+    }
+
+    .tech-content {
+      font-family: 'Roboto Mono', monospace; // Font mono-spaziato per i nomi delle tech
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-align: center;
+      line-height: 1.4;
+      color: $text-color; // Testo chiaro
+      transition: color 0.3s ease, transform 0.3s ease;
+      cursor: default;
+
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+
+      &:hover {
+        color: $accent-color; // Colore accento all'hover
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+/* FEATURED PROJECTS SECTION */
+.featured-projects-section {
+  padding: 3rem 2rem;
+  background-color: darken($dark-bg, 5%); // Sfondo leggermente più scuro del dark-bg
+  text-align: center;
+
+  .section-title {
+    margin-bottom: 2.5rem; // Spazio sotto il titolo
+    font-size: 2rem;
+    font-family: 'Share Tech Mono', monospace;
+    color: $accent-color; // Colore accento per il titolo
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .project-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: $card-bg !important; // Sfondo card scuro
+    color: $text-color; // Testo chiaro
+    border-radius: 1rem;
+    border: 1px solid rgba($primary-color, 0.3); // Bordo sottile con primary
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba($accent-color, 0.4); // Ombra con accento
+    }
+
+    img {
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      height: 180px; // Altezza fissa per le immagini dei progetti
+      object-fit: cover;
+    }
+
+    mat-card-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      font-family: 'Share Tech Mono', monospace; // Font tech per i titoli
+      color: $accent-color; // Colore accento
+    }
+
+    mat-card-subtitle {
+      color: lighten($text-color, 5%);
+    }
+
+    mat-card-content {
+      p {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: $text-color; // Testo chiaro
+      }
+    }
+    mat-card-actions {
+      padding: 1rem;
+      button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid $primary-color;
+        color: $primary-color;
+        &:hover {
+          background-color: $primary-color;
+          color: $text-color;
+        }
+      }
+    }
+  }
+}
+
+/* CTA SECTION */
+.cta-section {
+  // Gradiente accento per la CTA
+  background: linear-gradient(45deg, $accent-color 0%, darken($accent-color, 20%) 100%);
+  color: $dark-bg; // Testo scuro su sfondo accento
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-top: 3rem;
+  border-radius: 1rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+
+  h2 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: $dark-bg;
+  }
+  p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: darken($dark-bg, 10%);
+  }
+  button {
+    font-size: 1.3rem;
+    padding: 1rem 3rem;
+    border-radius: 0.5rem;
+    background-color: $dark-bg; // Pulsante scuro su sfondo accento
+    color: $accent-color; // Testo accento sul pulsante
+    border: 2px solid $dark-bg;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: lighten($dark-bg, 10%);
+      color: lighten($accent-color, 10%);
+      box-shadow: 0 0 20px rgba($dark-bg, 0.5);
+    }
+  }
+}
+
+/* Animazione per l'emoji */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+  .hero-section p {
+    font-size: 1.3rem;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+  .cta-section p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+  .hero-section button {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+  .tech-tile {
+    padding: 0.8rem;
+    .tech-content {
+      font-size: 0.9rem;
+    }
+  }
+  .cta-section {
+    padding: 3rem 1rem;
+    margin: 2rem 1rem;
+  }
+  .cta-section h2 {
+    font-size: 1.8rem;
+  }
+  .cta-section p {
+    font-size: 1rem;
+  }
+  .cta-section button {
+    font-size: 1.1rem;
+    padding: 0.8rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  .hero-section p {
+    font-size: 0.9rem;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+  .tech-grid {
+    grid-template-columns: 1fr; /* Singola colonna su schermi molto piccoli */
+  }
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+  .cta-section p {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,49 @@
+<footer class="footer-container">
+  <div class="footer-socials">
+    <a [href]="githubUrl" target="_blank" aria-label="GitHub Profile" mat-icon-button>
+      <i class="fab fa-github"></i>
+    </a>
+    <a [href]="'mailto:' + emailAddress" aria-label="Send Email" mat-icon-button>
+      <mat-icon>email</mat-icon>
+    </a>
+    <a [href]="linkedinUrl" target="_blank" aria-label="LinkedIn Profile" mat-icon-button>
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a [href]="instagramUrl" target="_blank" aria-label="Instagram Profile" mat-icon-button>
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a [href]="facebookUrl" target="_blank" aria-label="Facebook Profile" mat-icon-button>
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a [href]="whatsappLink" target="_blank" aria-label="WhatsApp Chat" mat-icon-button>
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <div class="footer-separator"></div>
+
+  <div class="footer-bottom-bar">
+    <div class="footer-copyright">
+      <span>&copy; {{ currentYear }} Aleksander Nikolli</span>
+    </div>
+    <div class="footer-tech-stack">
+      <span class="built-with-text">Built with:</span>
+      <div class="tech-item">
+        <mat-icon class="tech-icon">code</mat-icon>
+        <span class="tech-name">Angular</span>
+      </div>
+      <div class="tech-item">
+        <mat-icon class="tech-icon">storage</mat-icon>
+        <span class="tech-name">Node.js</span>
+      </div>
+      <div class="tech-item">
+        <mat-icon class="tech-icon">data_object</mat-icon>
+        <span class="tech-name">MongoDB</span>
+      </div>
+      <div class="tech-item">
+        <mat-icon class="tech-icon">speed</mat-icon>
+        <span class="tech-name">Express</span>
+      </div>
+    </div>
+  </div>
+</footer>
