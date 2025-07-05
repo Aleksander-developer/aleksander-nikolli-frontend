@@ -1,25 +1,23 @@
 /* src/app/shared/components/footer/footer.component.scss */
-@use '@angular/material' as mat;
 
-// Variabili SASS
-$dark-bg: #1a1a2e;
-$text-color: #e0e0e0;
-$accent-color: #00bcd4;
-$light-gray: #a0a0a0;
-$shadow-color: rgba($accent-color, 0.4);
+// Rimuovi: @use '@angular/material' as mat;
+// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
+
+// Importa le variabili globali dal tuo file _variables.scss
+@use '../../../styles/variables' as vars;
 
 /* --- Layout Principale del Footer --- */
 .footer-container {
-  background: $dark-bg;
-  color: $text-color;
-  font-family: 'Roboto Mono', monospace;
-  padding: 2rem 1rem;
+  background: vars.$dark-bg; // Usa vars.$dark-bg
+  color: vars.$text-color; // Usa vars.$text-color
+  font-family: vars.$font-family-base; // Usa variabile globale per il font
+  padding: vars.$spacing-lg vars.$spacing-md; // Usa variabili globali per il padding
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.25);
-  border-top: 1px solid rgba($accent-color, 0.2);
+  border-top: 1px solid rgba(vars.$accent-color, 0.2); // Usa vars.$accent-color
 }
 
 /* --- Sezione Icone Social --- */
@@ -30,7 +28,7 @@ $shadow-color: rgba($accent-color, 0.4);
   gap: 0.75rem;
 
   a {
-    color: $light-gray;
+    color: vars.$light-gray; // Usa vars.$light-gray
     font-size: 26px;
     display: inline-flex;
     align-items: center;
@@ -44,9 +42,9 @@ $shadow-color: rgba($accent-color, 0.4);
     }
 
     &:hover {
-      color: $accent-color;
+      color: vars.$accent-color; // Usa vars.$accent-color
       transform: translateY(-4px);
-      text-shadow: 0 0 12px $shadow-color;
+      text-shadow: 0 0 12px vars.$shadow-glow-color; // Usa vars.$shadow-glow-color
     }
   }
 }
@@ -56,7 +54,7 @@ $shadow-color: rgba($accent-color, 0.4);
   height: 1px;
   width: 80%;
   max-width: 500px;
-  background: linear-gradient(to right, transparent, rgba($accent-color, 0.4), transparent);
+  background: linear-gradient(to right, transparent, rgba(vars.$accent-color, 0.4), transparent); // Usa vars.$accent-color
 }
 
 /* --- Barra Inferiore (Copyright & Tech) --- */
@@ -68,7 +66,7 @@ $shadow-color: rgba($accent-color, 0.4);
   align-items: center;
   flex-wrap: wrap;
   font-size: 0.8rem;
-  color: $light-gray;
+  color: vars.$light-gray; // Usa vars.$light-gray
 }
 
 .footer-copyright {
@@ -80,47 +78,47 @@ $shadow-color: rgba($accent-color, 0.4);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: center; // Centra gli elementi quando vanno a capo su mobile
-  gap: 1.25rem; // Spazio tra i vari "tech-item"
+  justify-content: center;
+  gap: 1.25rem;
   padding: 0.5rem;
 }
 
 .built-with-text {
-  white-space: nowrap; // Evita che "Built with:" vada a capo
+  white-space: nowrap;
 }
 
 .tech-item {
   display: flex;
   align-items: center;
-  gap: 0.4rem; // Spazio tra icona e testo
+  gap: 0.4rem;
 }
 
 .tech-icon {
   font-size: 20px;
   width: 20px;
   height: 20px;
-  color: $accent-color;
+  color: vars.$accent-color; // Usa vars.$accent-color
   opacity: 0.9;
 }
 
 .tech-name {
   font-size: 0.8rem;
-  color: $light-gray;
+  color: vars.$light-gray; // Usa vars.$light-gray
   white-space: nowrap;
 }
 
 /* --- Media Query per Responsività --- */
-@media (max-width: 768px) {
+@media (max-width: vars.$breakpoint-md) { // Usa variabile globale per il breakpoint
   .footer-bottom-bar {
     flex-direction: column;
     justify-content: center;
-    gap: 1rem; // Aumenta lo spazio tra copyright e tech stack su mobile
+    gap: 1rem;
     text-align: center;
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 769px) { // Questo breakpoint è hardcoded, potresti volerlo in vars.$breakpoint-md o vars.$breakpoint-lg
   .footer-tech-stack {
-    justify-content: flex-end; // Allinea a destra su schermi grandi
+    justify-content: flex-end;
   }
 }

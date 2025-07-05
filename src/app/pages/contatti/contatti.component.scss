@@ -1,127 +1,118 @@
 /* src/app/pages/contatti/contatti.component.scss */
-@use '@angular/material' as mat;
 
-// Variabili di tema del tuo progetto (devono corrispondere a quelle globali)
-$dark-bg: #1a1a2e;
-$accent-color: #00bcd4; // Colore accentato (ciano)
-$text-color: #e0e0e0; // Colore del testo chiaro
-$light-gray: #a0a0a0; // Grigio chiaro
-$primary-color: #1976d2; // Colore primary di Angular Material (blu)
-$error-color: #ff5252; // Rosso per gli errori
-$success-color: #00e676; // Verde vibrante per i successi
-$shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
+// Rimuovi: @use '@angular/material' as mat;
+// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
+
+// Importa le variabili globali dal tuo file _variables.scss
+@use '../../../styles/variables' as vars;
 
 .contatti-container {
   max-width: 700px;
-  margin: 3rem auto; // Più margine per centrare meglio
-  padding: 2.5rem; // Più padding
-  background: lighten($dark-bg, 3%); // Sfondo leggermente più chiaro del dark-bg
-  color: $text-color; // Testo chiaro
+  margin: vars.$spacing-xl auto; // Usa variabile globale per il margine
+  padding: 2.5rem;
+  background: lighten(vars.$dark-bg, 3%); // Usa vars.$dark-bg
+  color: vars.$text-color; // Usa vars.$text-color
   border-radius: 12px;
-  // Ombra più decisa e con bagliore per un look tech
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba($accent-color, 0.5); 
-  border: 1px solid rgba($accent-color, 0.2); // Bordo sottile tech
-  font-family: 'Roboto Mono', monospace; // Applica il font tech
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(vars.$accent-color, 0.5); 
+  border: 1px solid rgba(vars.$accent-color, 0.2);
+  font-family: vars.$font-family-base; // Usa variabile globale per il font
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 2rem; // Più spazio sotto il titolo
-  font-family: 'Roboto Mono', monospace;
+  margin-bottom: vars.$spacing-lg; // Usa variabile globale per il margine
+  font-family: vars.$font-family-base; // Usa variabile globale per il font
   font-weight: 700;
-  letter-spacing: 1.5px; // Leggermente più spaziatura
-  color: $accent-color; // Titolo in colore accentato
-  text-shadow: 0 0 15px rgba($accent-color, 0.6); // Bagliore per il titolo
-  font-size: 2.2rem; // Dimensione maggiore per il titolo
+  letter-spacing: 1.5px;
+  color: vars.$accent-color; // Usa vars.$accent-color
+  text-shadow: 0 0 15px rgba(vars.$accent-color, 0.6);
+  font-size: 2.2rem;
 }
 
 form.contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.8rem; // Più spazio tra i campi
+  gap: 1.8rem;
 
   mat-form-field {
     width: 100%;
 
-    // Stile per l'outline (bordo) del campo quando non è focalizzato
     .mat-form-field-outline {
-      color: rgba($accent-color, 0.5); // Outline in colore accentato semi-trasparente
+      color: rgba(vars.$accent-color, 0.5); // Usa vars.$accent-color
     }
 
-    // Stile per l'outline quando il campo è focalizzato (attivo)
     &.mat-focused .mat-form-field-outline {
-      color: $accent-color; // Outline più intenso quando focalizzato
+      color: vars.$accent-color; // Usa vars.$accent-color
     }
 
     .mat-form-field-label {
-      color: $light-gray !important; // Label in grigio chiaro
-      font-family: 'Roboto Mono', monospace;
-      font-size: 1.05rem; // Dimensione leggermente maggiore per la label
+      color: vars.$light-gray !important; // Usa vars.$light-gray
+      font-family: vars.$font-family-base; // Usa variabile globale per il font
+      font-size: 1.05rem;
     }
 
     input, textarea {
-      color: $text-color; // Testo input/textarea bianco/chiaro
+      color: vars.$text-color; // Usa vars.$text-color
       background-color: transparent;
-      font-family: 'Roboto Mono', monospace;
-      caret-color: $accent-color; // Cursore in colore accentato
-      font-size: 1.1rem; // Dimensione del testo input
+      font-family: vars.$font-family-base; // Usa variabile globale per il font
+      caret-color: vars.$accent-color; // Usa vars.$accent-color
+      font-size: 1.1rem;
     }
 
     .mat-error {
-      font-size: 0.9rem; // Dimensione errore leggermente maggiore
-      color: $error-color; // Rosso per gli errori
-      font-family: 'Roboto Mono', monospace;
-      margin-top: 0.5rem; // Spazio sopra l'errore
+      font-size: 0.9rem;
+      color: vars.$error-color; // Usa vars.$error-color
+      font-family: vars.$font-family-base; // Usa variabile globale per il font
+      margin-top: 0.5rem;
     }
   }
 
   .success-message {
     margin: 1.5rem 0;
     padding: 15px 25px;
-    background-color: rgba($success-color, 0.2); // Sfondo verde semi-trasparente
-    color: $success-color; // Testo verde vibrante
+    background-color: rgba(vars.$success-color, 0.2); // Usa vars.$success-color
+    color: vars.$success-color; // Usa vars.$success-color
     font-weight: 700;
-    font-family: 'Roboto Mono', monospace;
+    font-family: vars.$font-family-base; // Usa variabile globale per il font
     border-radius: 8px;
-    box-shadow: 0 5px 20px rgba($success-color, 0.5); // Ombra con bagliore verde
+    box-shadow: 0 5px 20px rgba(vars.$success-color, 0.5);
     text-align: center;
-    font-size: 1.2rem; // Dimensione maggiore
-    border: 1px solid $success-color; // Bordo verde
+    font-size: 1.2rem;
+    border: 1px solid vars.$success-color; // Usa vars.$success-color
   }
 
   button {
     align-self: center;
-    width: 180px; // Larghezza maggiore per il bottone
-    height: 50px; // Altezza maggiore
+    width: 180px;
+    height: 50px;
     font-weight: 700;
-    letter-spacing: 1.5px; // Più spaziatura
-    font-family: 'Roboto Mono', monospace;
-    border-radius: 8px; // Bordi arrotondati
-    text-transform: uppercase; // Testo in maiuscolo
+    letter-spacing: 1.5px;
+    font-family: vars.$font-family-base; // Usa variabile globale per il font
+    border-radius: 8px;
+    text-transform: uppercase;
     
-    // Colore primario di Angular Material, ma con un tocco tech
-    background-color: $primary-color; 
-    box-shadow: 0 5px 20px rgba($primary-color, 0.4); // Ombra con bagliore blu
+    background-color: vars.$primary-color; // Usa vars.$primary-color
+    box-shadow: 0 5px 20px rgba(vars.$primary-color, 0.4);
 
     &:hover:not(:disabled) {
-      background-color: darken($primary-color, 10%); // Scuro all'hover
-      box-shadow: 0 8px 30px rgba($primary-color, 0.7); // Ombra più intensa all'hover
-      transform: translateY(-3px); // Leggero sollevamento
-      transition: all 0.3s ease; // Transizione per l'hover
+      background-color: darken(vars.$primary-color, 10%); // Usa vars.$primary-color
+      box-shadow: 0 8px 30px rgba(vars.$primary-color, 0.7);
+      transform: translateY(-3px);
+      transition: all 0.3s ease;
     }
 
     &:disabled {
-      background-color: $light-gray; // Grigio chiaro quando disabilitato
-      color: darken($light-gray, 30%);
+      background-color: vars.$light-gray; // Usa vars.$light-gray
+      color: darken(vars.$light-gray, 30%); // Usa vars.$light-gray
       cursor: not-allowed;
       box-shadow: none;
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: vars.$breakpoint-md) { // Usa variabile globale per il breakpoint
   .contatti-container {
-    margin: 1.5rem; // Margine su mobile
+    margin: 1.5rem;
     padding: 1.5rem;
 
     h1 {

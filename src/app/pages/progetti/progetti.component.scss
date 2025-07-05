@@ -1,21 +1,18 @@
 /* src/app/pages/progetti/progetti.component.scss */
-@use '@angular/material' as mat;
 
-// Variabili di tema del tuo progetto
-$dark-bg: #1a1a2e;
-$accent-color: #00bcd4; // Colore accentato (ciano)
-$text-color: #e0e0e0; // Colore del testo chiaro
-$light-gray: #a0a0a0; // Grigio chiaro
-$primary-color: #1976d2; // Colore primary di Angular Material (blu)
-$shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
+// Rimuovi: @use '@angular/material' as mat;
+// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
+
+// Importa le variabili globali dal tuo file _variables.scss
+@use '../../../styles/variables' as vars;
 
 .progetti-section {
-  padding: 3rem 1.5rem; // Più padding per un look spazioso
+  padding: vars.$spacing-xl vars.$spacing-md; // Usa variabili globali per il padding
   display: flex;
   flex-direction: column;
   gap: 2.5rem; // Spazio tra le sezioni
   align-items: center; // Centra il contenuto
-  font-family: 'Roboto Mono', monospace; // Applica il font tech
+  font-family: vars.$font-family-base; // Usa variabile globale per il font
   min-height: calc(100vh - 120px); // Per centrare verticalmente se il contenuto è poco
   justify-content: center; // Centra verticalmente
 }
@@ -23,13 +20,13 @@ $shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
 .progetti-card {
   max-width: 700px; // Larghezza massima per la card placeholder
   width: 100%;
-  padding: 2rem; // Più padding interno
-  background: lighten($dark-bg, 3%); // Sfondo scuro, leggermente più chiaro del bg generale
-  color: $text-color; // Testo chiaro sulla card
+  padding: vars.$spacing-lg; // Usa variabile globale per il padding interno
+  background: lighten(vars.$dark-bg, 3%); // Usa vars.$dark-bg
+  color: vars.$text-color; // Usa vars.$text-color
   border-radius: 12px; // Bordi più arrotondati
   // Ombra più decisa e con un tocco dell'accent-color per un vibe tech
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba($accent-color, 0.5); 
-  border: 1px solid rgba($accent-color, 0.2); // Bordo sottile per delineare
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(vars.$accent-color, 0.5); 
+  border: 1px solid rgba(vars.$accent-color, 0.2); // Bordo sottile per delineare
   text-align: center; // Centra il testo all'interno della card
 
   mat-card-header {
@@ -46,8 +43,8 @@ $shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
     }
     mat-card-title {
       font-size: 2.2rem; // Titolo più grande
-      color: $accent-color; // Titolo in colore accentato
-      text-shadow: 0 0 18px rgba($accent-color, 0.7); // Bagliore più intenso per il titolo
+      color: vars.$accent-color; // Usa vars.$accent-color
+      text-shadow: 0 0 18px rgba(vars.$accent-color, 0.7); // Bagliore più intenso per il titolo
       font-weight: 700; // Bold più pronunciato
     }
   }
@@ -56,13 +53,13 @@ $shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
     p {
       font-size: 1.15rem; // Testo più grande per leggibilità
       line-height: 1.8; // Aumenta l'interlinea
-      color: $light-gray; // Testo in grigio chiaro
+      color: vars.$light-gray; // Usa vars.$light-gray
       margin-bottom: 1.2rem; // Spazio tra i paragrafi
     }
     strong {
-      color: $accent-color; // Testo forte in colore accentato
+      color: vars.$accent-color; // Usa vars.$accent-color
       font-weight: 700;
-      text-shadow: 0 0 10px rgba($accent-color, 0.4); // Bagliore per il testo forte
+      text-shadow: 0 0 10px rgba(vars.$accent-color, 0.4); // Bagliore per il testo forte
     }
   }
 }
@@ -73,9 +70,9 @@ $shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
 // button[mat-raised-button] { /* ... */ } // Questi stili saranno gestiti globalmente o dal componente specifico
 
 /* --- Media Query per Responsività --- */
-@media (max-width: 768px) {
+@media (max-width: vars.$breakpoint-md) { // Usa vars.$breakpoint-md
   .progetti-section {
-    padding: 2rem 1rem;
+    padding: vars.$spacing-lg vars.$spacing-md; // Usa variabili globali per il padding
     gap: 1.5rem;
   }
 

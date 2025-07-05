@@ -1,24 +1,23 @@
-/* src/app/components/quote-box/quote-box.scss */
-@use '@angular/material' as mat;
+/* src/app/shared/components/quote-box/quote-box.component.scss */
 
-// Variabili di tema del nostro progetto
-$dark-bg: #1a1a2e;
-$accent-color: #00bcd4; // Colore accentato per un tocco tech
-$text-color: #e0e0e0;
-$light-gray: #a0a0a0;
+// Rimuovi: @use '@angular/material' as mat;
+// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
+
+// Importa le variabili globali dal tuo file _variables.scss
+@use '../../../styles/variables' as vars;
 
 .quote-box {
-  background: lighten($dark-bg, 3%);
-  color: $text-color;
-  font-family: 'Roboto Mono', monospace;
+  background: lighten(vars.$dark-bg, 3%); // Usa vars.$dark-bg
+  color: vars.$text-color; // Usa vars.$text-color
+  font-family: vars.$font-family-base; // Usa variabile globale per il font
   margin: 4rem auto;
   padding: 2.5rem 3rem;
   max-width: 800px;
   border-radius: 8px;
   position: relative;
-  border: 1px solid rgba($accent-color, 0.2);
+  border: 1px solid rgba(vars.$accent-color, 0.2); // Usa vars.$accent-color
   // Ombra di base potenziata con un bagliore sottile dell'accent color
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba($accent-color, 0.4); // Aggiunto un bagliore più sottile
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(vars.$accent-color, 0.4); // Usa vars.$accent-color
   overflow: hidden;
   // Transizione più morbida per un effetto premium
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -35,7 +34,7 @@ $light-gray: #a0a0a0;
     // con un bagliore più intenso per lo stile "tech".
     box-shadow: 
       0 12px 20px rgba(0, 0, 0, 0.5), // Ombra #1: Più vicina e definita
-      0 0 35px rgba($accent-color, 0.7); // Ombra #2: Bagliore accentuato e diffuso per un effetto tech
+      0 0 35px rgba(vars.$accent-color, 0.7); // Ombra #2: Bagliore accentuato e diffuso per un effetto tech (Usa vars.$accent-color)
   }
 }
 
@@ -44,7 +43,7 @@ $light-gray: #a0a0a0;
 .quote-icon-bottom {
   position: absolute;
   font-size: 5rem;
-  color: rgba($accent-color, 0.08);
+  color: rgba(vars.$accent-color, 0.08); // Usa vars.$accent-color
   user-select: none;
 }
 
@@ -68,25 +67,25 @@ $light-gray: #a0a0a0;
   z-index: 2;
 
   strong {
-    color: $accent-color;
+    color: vars.$accent-color; // Usa vars.$accent-color
     font-weight: 600;
-    text-shadow: 0 0 10px rgba($accent-color, 0.3);
+    text-shadow: 0 0 10px rgba(vars.$accent-color, 0.3);
   }
 
   em {
     display: block;
     margin-top: 1.2rem;
-    color: $light-gray;
+    color: vars.$light-gray; // Usa vars.$light-gray
     font-style: italic;
     font-size: 1rem;
   }
 }
 
 // Media query per la responsività (invariata)
-@media (max-width: 768px) {
+@media (max-width: vars.$breakpoint-md) { // Usa variabile globale per il breakpoint
   .quote-box {
-    margin: 2rem 1rem;
-    padding: 2rem 1.5rem;
+    margin: vars.$spacing-lg vars.$spacing-md; // Usa variabili globali per il margine
+    padding: vars.$spacing-lg vars.$spacing-md; // Usa variabili globali per il padding
   }
   .quote-text {
     font-size: 1rem;

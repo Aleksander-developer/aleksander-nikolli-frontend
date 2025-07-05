@@ -1,33 +1,28 @@
 /* src/app/pages/progetti/progetto-detail/progetto-detail.component.scss */
-@use '@angular/material' as mat;
 
-// Variabili di tema del tuo progetto (devono corrispondere a quelle globali)
-$dark-bg: #1a1a2e;
-$accent-color: #00bcd4; // Colore accentato (ciano)
-$text-color: #e0e0e0; // Colore del testo chiaro
-$light-gray: #a0a0a0; // Grigio chiaro
-$primary-color: #1976d2; // Colore primary di Angular Material (blu)
-$shadow-glow-color: rgba($accent-color, 0.6); // Colore per l'ombra luminosa
-$error-color: #ff5252; // Rosso per gli errori (già definito)
-$error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfondo dell'errore
+// Rimuovi: @use '@angular/material' as mat;
+// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
+
+// Importa le variabili globali dal tuo file _variables.scss
+@use '../../../../styles/variables' as vars;
 
 .project-detail-section {
-  padding: 3rem 1.5rem;
+  padding: vars.$spacing-xl vars.$spacing-md; // Usa variabili globali per il padding
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: calc(100vh - 120px);
-  font-family: 'Roboto Mono', monospace;
+  font-family: vars.$font-family-base; // Usa variabile globale per il font
 }
 
 .project-detail-card {
   max-width: 900px;
   width: 100%;
-  background: lighten($dark-bg, 3%);
-  color: $text-color;
+  background: lighten(vars.$dark-bg, 3%); // Usa vars.$dark-bg
+  color: vars.$text-color; // Usa vars.$text-color
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba($accent-color, 0.5); 
-  border: 1px solid rgba($accent-color, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(vars.$accent-color, 0.5); 
+  border: 1px solid rgba(vars.$accent-color, 0.2);
   text-align: center;
   padding: 1.5rem;
 
@@ -39,8 +34,8 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
     }
     mat-card-title {
       font-size: 2.2rem;
-      color: $accent-color;
-      text-shadow: 0 0 18px rgba($accent-color, 0.7);
+      color: vars.$accent-color; // Usa vars.$accent-color
+      text-shadow: 0 0 18px rgba(vars.$accent-color, 0.7);
       font-weight: 700;
     }
   }
@@ -66,15 +61,15 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
     .description {
       font-size: 1.15rem;
       line-height: 1.8;
-      color: $light-gray;
+      color: vars.$light-gray; // Usa vars.$light-gray
       margin-bottom: 2rem;
     }
 
     h3 {
       font-size: 1.5rem;
-      color: $accent-color;
+      color: vars.$accent-color; // Usa vars.$accent-color
       margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba($accent-color, 0.4);
+      text-shadow: 0 0 10px rgba(vars.$accent-color, 0.4);
       font-weight: 600;
     }
 
@@ -89,28 +84,28 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
         padding: 0.5rem 1rem;
         font-size: 0.95rem;
         border-radius: 20px;
-        background-color: rgba($accent-color, 0.15);
-        border: 1px solid rgba($accent-color, 0.3);
+        background-color: rgba(vars.$accent-color, 0.15);
+        border: 1px solid rgba(vars.$accent-color, 0.3);
         transition: all 0.2s ease-in-out;
 
         ::ng-deep .mat-mdc-chip-action-label,
         ::ng-deep .mdc-evolution-chip__text-content {
-          color: $text-color;
+          color: vars.$text-color; // Usa vars.$text-color
         }
 
         &.mdc-evolution-chip--selected {
-          background-color: $accent-color;
+          background-color: vars.$accent-color; // Usa vars.$accent-color
           ::ng-deep .mat-mdc-chip-action-label,
           ::ng-deep .mdc-evolution-chip__text-content {
-            color: $dark-bg;
+            color: vars.$dark-bg; // Usa vars.$dark-bg
           }
-          box-shadow: 0 0 10px rgba($accent-color, 0.7);
+          box-shadow: 0 0 10px rgba(vars.$accent-color, 0.7);
         }
 
         &:hover {
           transform: translateY(-3px);
-          background-color: rgba($accent-color, 0.25);
-          box-shadow: 0 5px 15px rgba($accent-color, 0.4);
+          background-color: rgba(vars.$accent-color, 0.25);
+          box-shadow: 0 5px 15px rgba(vars.$accent-color, 0.4);
         }
       }
     }
@@ -122,7 +117,7 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
-    border-top: 1px solid rgba($accent-color, 0.1);
+    border-top: 1px solid rgba(vars.$accent-color, 0.1);
     margin-top: 2rem;
 
     a {
@@ -136,23 +131,23 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
       padding: 0.8rem 1.5rem;
 
       &.mat-raised-button {
-        background-color: $accent-color;
-        color: $dark-bg;
-        box-shadow: 0 5px 20px rgba($accent-color, 0.5);
+        background-color: vars.$accent-color; // Usa vars.$accent-color
+        color: vars.$dark-bg; // Usa vars.$dark-bg
+        box-shadow: 0 5px 20px rgba(vars.$accent-color, 0.5);
         &:hover {
-          background-color: darken($accent-color, 10%);
-          box-shadow: 0 8px 30px rgba($accent-color, 0.8);
+          background-color: darken(vars.$accent-color, 10%); // Usa vars.$accent-color
+          box-shadow: 0 8px 30px rgba(vars.$accent-color, 0.8);
           transform: translateY(-3px);
         }
       }
 
       &.mat-stroked-button {
-        border-color: $primary-color;
-        color: $primary-color;
-        box-shadow: 0 3px 10px rgba($primary-color, 0.3);
+        border-color: vars.$primary-color; // Usa vars.$primary-color
+        color: vars.$primary-color; // Usa vars.$primary-color
+        box-shadow: 0 3px 10px rgba(vars.$primary-color, 0.3);
         &:hover {
-          background-color: rgba($primary-color, 0.1);
-          box-shadow: 0 5px 15px rgba($primary-color, 0.5);
+          background-color: rgba(vars.$primary-color, 0.1);
+          box-shadow: 0 5px 15px rgba(vars.$primary-color, 0.5);
           transform: translateY(-3px);
         }
       }
@@ -161,13 +156,13 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
 
   .mat-divider-margin {
     margin: 2.5rem 0;
-    background-color: rgba($accent-color, 0.3);
+    background-color: rgba(vars.$accent-color, 0.3);
   }
 
   .back-button {
     font-weight: 600;
-    color: $light-gray;
-    font-family: 'Roboto Mono', monospace;
+    color: vars.$light-gray; // Usa vars.$light-gray
+    font-family: vars.$font-family-base; // Usa variabile globale per il font
     margin-top: 1rem;
     transition: color 0.3s ease, transform 0.3s ease;
     
@@ -180,7 +175,7 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
     }
 
     &:hover {
-      color: $accent-color;
+      color: vars.$accent-color; // Usa vars.$accent-color
       transform: translateX(-5px);
     }
   }
@@ -193,13 +188,13 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
   justify-content: center;
   gap: 1rem;
   padding: 2rem;
-  background-color: lighten($dark-bg, 5%);
+  background-color: lighten(vars.$dark-bg, 5%); // Usa vars.$dark-bg
   border-radius: 12px;
   max-width: 500px;
   width: 100%;
   margin-top: 2rem;
   text-align: center;
-  color: $text-color;
+  color: vars.$text-color; // Usa vars.$text-color
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 
   mat-icon {
@@ -214,24 +209,22 @@ $error-dark-color: darken($error-color, 20%); // Un rosso più scuro per lo sfon
 }
 
 .error-message {
-  // --- MODIFICHE QUI ---
-  border: 1px solid $error-color;
-  background-color: rgba($error-dark-color, 0.2);
-  color: $error-color;
-  box-shadow: 0 5px 20px rgba($error-dark-color, 0.5);
-  // --- FINE MODIFICHE ---
+  border: 1px solid vars.$error-color; // Usa vars.$error-color
+  background-color: rgba(vars.$error-dark-color, 0.2); // Usa vars.$error-dark-color
+  color: vars.$error-color; // Usa vars.$error-color
+  box-shadow: 0 5px 20px rgba(vars.$error-dark-color, 0.5);
 }
 
 
 /* --- Media Query per Responsività --- */
-@media (max-width: 768px) {
+@media (max-width: vars.$breakpoint-md) { // Usa variabile globale per il breakpoint
   .project-detail-section {
-    padding: 2rem 1rem;
+    padding: vars.$spacing-lg vars.$spacing-md; // Usa variabili globali per il padding
     align-items: center;
   }
 
   .project-detail-card {
-    padding: 1rem;
+    padding: vars.$spacing-md; // Usa variabile globale per il padding
     mat-card-header {
       mat-card-title {
         font-size: 1.8rem;

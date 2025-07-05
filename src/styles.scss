@@ -1,4 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Importa le tue variabili e mixin globali
+@use './styles/variables' as vars;
+@use './styles/mixins' as mixins;
+
+// Se non usi un tema pre-costruito in angular.json, potresti definire il tuo tema qui:
+// @use '@angular/material' as mat;
+// @include mat.core();
+// $my-primary: mat.define-palette(mat.$blue-palette, 700);
+// $my-accent: mat.define-palette(mat.$cyan-palette, A200, A100, A400);
+// $my-theme: mat.define-dark-theme((
+//   color: (
+//     primary: $my-primary,
+//     accent: $my-accent,
+//   )
+// ));
+// @include mat.all-component-themes($my-theme);
+
+// Stili globali per il body, font, ecc.
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: vars.$font-family-base; // Usa la variabile globale
+  background-color: vars.$dark-bg; // Usa la variabile globale
+  color: vars.$text-color; // Usa la variabile globale
+}
+
+// Puoi aggiungere qui altri stili globali, classi di utilità, ecc.
