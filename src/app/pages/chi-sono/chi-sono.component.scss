@@ -1,17 +1,13 @@
 /* src/app/pages/chi-sono/chi-sono.component.scss */
 
-// Rimuovi: @use '@angular/material' as mat;
-// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
-
-// Importa le variabili globali dal tuo file _variables.scss
 @use '../../../styles/variables' as vars;
 
 .chi-sono-card {
-  margin: vars.$spacing-lg auto; // Usa variabile globale per il margine
+  margin: vars.$spacing-lg auto;
   max-width: 900px;
   padding: 1.5rem;
-  background: lighten(vars.$dark-bg, 3%); // Usa vars.$dark-bg
-  color: vars.$text-color; // Usa vars.$text-color
+  background: lighten(vars.$dark-bg, 3%);
+  color: vars.$text-color;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(vars.$accent-color, 0.5); 
   border: 1px solid rgba(vars.$accent-color, 0.2);
@@ -19,7 +15,7 @@
   mat-card-title {
     font-size: 1.6rem;
     margin-bottom: 1rem;
-    color: vars.$accent-color; // Usa vars.$accent-color
+    color: vars.$accent-color;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -34,14 +30,14 @@
   mat-card-content {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: vars.$light-gray; // Usa vars.$light-gray
+    color: vars.$light-gray;
 
     p {
       margin-bottom: 1rem;
     }
 
     strong {
-      color: vars.$accent-color; // Usa vars.$accent-color
+      color: vars.$accent-color;
       font-weight: 700;
     }
 
@@ -52,7 +48,7 @@
         position: relative;
         &::before {
           content: '•';
-          color: vars.$accent-color; // Usa vars.$accent-color
+          color: vars.$accent-color;
           position: absolute;
           left: -1rem;
           top: 0;
@@ -78,14 +74,14 @@
 
       ::ng-deep .mat-mdc-chip-action-label,
       ::ng-deep .mdc-evolution-chip__text-content {
-          color: vars.$text-color; // Usa vars.$text-color
+          color: vars.$text-color;
       }
 
       &.mdc-evolution-chip--selected {
-        background-color: vars.$accent-color; // Usa vars.$accent-color
+        background-color: vars.$accent-color;
         ::ng-deep .mat-mdc-chip-action-label,
         ::ng-deep .mdc-evolution-chip__text-content {
-            color: vars.$dark-bg; // Usa vars.$dark-bg
+            color: vars.$dark-bg;
         }
         font-weight: 600;
         box-shadow: 0 0 12px rgba(vars.$accent-color, 0.8);
@@ -100,40 +96,39 @@
   }
 
   .mat-divider-margin {
-    margin: vars.$spacing-lg 0; // Usa variabile globale per il margine
-    background-color: rgba(vars.$accent-color, 0.3); // Usa vars.$accent-color
+    margin: vars.$spacing-lg 0;
+    background-color: rgba(vars.$accent-color, 0.3);
   }
 
-  // Stili per la nuova sezione degli attestati
   .attestati-intro {
     text-align: center;
     margin-bottom: 1.5rem;
-    color: vars.$text-color; // Usa vars.$text-color
+    color: vars.$text-color;
     font-size: 1.05rem;
   }
 
   .attestati-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: vars.$spacing-lg; // Usa variabile globale per la spaziatura
+    gap: vars.$spacing-lg;
     justify-content: center;
     margin-top: 1.5rem;
   }
 
   .attestato-item {
-    background-color: lighten(vars.$dark-bg, 5%); // Usa vars.$dark-bg
+    background-color: lighten(vars.$dark-bg, 5%);
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
     padding-bottom: 1rem;
-    border: 1px solid rgba(vars.$accent-color, 0.3); // Usa vars.$accent-color
+    border: 1px solid rgba(vars.$accent-color, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 15px rgba(vars.$accent-color, 0.4);
 
     &:hover {
       transform: translateY(-8px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8), 0 0 30px vars.$shadow-glow-color; // Usa vars.$shadow-glow-color
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8), 0 0 30px vars.$shadow-glow-color;
     }
   }
 
@@ -155,14 +150,14 @@
     margin-top: 1rem;
     font-size: 1.1rem;
     font-weight: 500;
-    color: vars.$accent-color; // Usa vars.$accent-color
+    color: vars.$accent-color;
     text-shadow: 0 0 8px rgba(vars.$accent-color, 0.3);
   }
 
   .final-note {
     margin-top: 2.5rem;
     padding: 1.5rem;
-    background-color: lighten(vars.$dark-bg, 5%); // Usa vars.$dark-bg
+    background-color: lighten(vars.$dark-bg, 5%);
     border: 1px solid rgba(vars.$accent-color, 0.4);
     border-radius: 8px;
     text-align: center;
@@ -170,26 +165,47 @@
 
     p {
       font-weight: 500;
-      color: vars.$text-color; // Usa vars.$text-color
+      color: vars.$text-color;
       font-size: 1.1rem;
 
       .contact-link {
-        color: vars.$accent-color; // Usa vars.$accent-color
+        color: vars.$accent-color;
         text-decoration: none;
         font-weight: 700;
-        text-shadow: 0 0 10px rgba(vars.$accent-color, 0.6);
-        transition: text-shadow 0.3s ease, transform 0.3s ease;
+        text-shadow: 0 0 15px rgba(vars.$accent-color, 0.8); 
+        transition: all 0.3s ease-in-out;
         display: inline-block;
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          width: 0;
+          height: 2px;
+          background-color: vars.$primary-color;
+          transition: all 0.3s ease-in-out;
+          transform: translateX(-50%);
+        }
 
         &:hover {
-          text-shadow: 0 0 15px rgba(vars.$accent-color, 0.9);
-          transform: scale(1.05);
+          text-shadow: 0 0 25px rgba(vars.$accent-color, 1); 
+          transform: scale(1.07);
           cursor: pointer;
+          background-color: rgba(vars.$accent-color, 0.1); 
+
+          &::after {
+            width: 100%;
+          }
         }
       }
 
       strong {
-        color: vars.$accent-color; // Usa vars.$accent-color
+        color: vars.$accent-color; 
         text-shadow: 0 0 10px rgba(vars.$accent-color, 0.5);
       }
     }
@@ -197,7 +213,7 @@
 }
 
 // Media Query per la responsività
-@media (max-width: vars.$breakpoint-md) { // Usa vars.$breakpoint-md
+@media (max-width: vars.$breakpoint-md) {
   .chi-sono-card {
     margin: 1.5rem 1rem;
     padding: 1rem;
@@ -247,6 +263,45 @@
       margin-top: 2rem; 
       padding: 1.2rem;
       font-size: 1rem;
+
+      p {
+        .contact-link {
+          // Rimuovi gli effetti hover per mobile, li sostituiremo con l'animazione
+          &:hover {
+            transform: none;
+            background-color: transparent;
+            text-shadow: 0 0 15px rgba(vars.$accent-color, 0.8); // Mantieni il bagliore base
+            &::after {
+              width: 0; // Rimuovi l'espansione all'hover
+            }
+          }
+
+          // Applica l'animazione solo su schermi piccoli
+          &::after {
+            animation: mobile-underline 2s infinite ease-in-out; // Animazione a intervalli
+          }
+        }
+      }
     }
+  }
+}
+
+/* --- Animazione per la sottolineatura su mobile --- */
+@keyframes mobile-underline {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  25% {
+    width: 100%;
+    opacity: 1;
+  }
+  75% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
   }
 }

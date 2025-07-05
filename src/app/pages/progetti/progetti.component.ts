@@ -1,5 +1,6 @@
 // src/app/pages/progetti/progetti.component.ts
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'; // Importa Router
 // Importa SharedService e l'interfaccia Progetto dal tuo service unificato
 import { SharedService, Progetto } from '../../shared/services/shared.service';
 
@@ -8,18 +9,18 @@ import { SharedService, Progetto } from '../../shared/services/shared.service';
   templateUrl: './progetti.component.html',
   styleUrls: ['./progetti.component.scss']
 })
-export class ProgettiComponent implements OnInit { // Rinomina la classe (se non l'hai già fatto)
-  progetti: Progetto[] = []; // Array per i progetti (potrebbe rimanere vuoto per il placeholder)
-  loading = true; // Indica se i dati sono in caricamento
-  errore = ''; // Contiene eventuali messaggi di errore
+export class ProgettiComponent implements OnInit {
+  progetti: Progetto[] = [];
+  loading = true;
+  errore = '';
 
-  // Inietta SharedService
-  constructor(private sharedService: SharedService) {}
+  // Inietta SharedService e Router
+  constructor(
+    private sharedService: SharedService,
+    private router: Router // Inietta Router
+  ) {}
 
   ngOnInit(): void {
-    // Tentiamo comunque di caricare i progetti dal backend.
-    // Il risultato (progetti vuoti o errore) verrà loggato,
-    // ma l'HTML mostrerà sempre il messaggio placeholder.
     this.sharedService.getProgetti().subscribe({
       next: (data) => {
         this.progetti = data;
@@ -35,5 +36,10 @@ export class ProgettiComponent implements OnInit { // Rinomina la classe (se non
         this.loading = false;
       }
     });
+  }
+
+  // Metodo per navigare alla pagina dei contatti
+  goToContatti(): void {
+    this.router.navigate(['/contatti']);
   }
 }

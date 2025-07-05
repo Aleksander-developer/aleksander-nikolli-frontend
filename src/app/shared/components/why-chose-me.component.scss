@@ -1,29 +1,30 @@
-// src/app/shared/components/why-chose-me/why-chose-me.component.scss
-@use '@angular/material' as mat;
+/* src/app/shared/components/why-chose-me/why-chose-me.component.scss */
 
-// Variabili SASS per colori coerenti con il tema Material
-$accent-color: #00bcd4;  // Corrisponde a Cyan 500 (accent)
-$text-color: #e0e0e0;    // Testo chiaro (da styles.scss)
-$card-bg: #2e2e4a;       // Sfondo più scuro per le card (da styles.scss)
+// Rimuovi: @use '@angular/material' as mat;
+// Rimuovi tutte le definizioni di variabili locali come $accent-color, $text-color, $card-bg.
+
+// Importa le variabili globali dal tuo file _variables.scss
+@use '../../../styles/variables' as vars;
 
 .why-choose-me-card {
-  background-color: $card-bg !important; // Sfondo scuro per le card (come definito in styles.scss)
-  color: $text-color; // Testo chiaro (come definito in styles.scss)
-  margin: 2rem auto;
+  background-color: vars.$card-bg !important; // Usa vars.$card-bg
+  color: vars.$text-color; // Usa vars.$text-color
+  font-family: vars.$font-family-base; // Usa variabile globale per il font
+  margin: vars.$spacing-lg auto; // Usa variabile globale per il margine
   padding: 1.5rem;
   border-radius: 1rem;
   max-width: 800px;
-  border: 1px solid #4a4a6e; // Bordo sottile (come definito in styles.scss)
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4); // Ombre (come definito in styles.scss)
+  border: 1px solid rgba(vars.$accent-color, 0.3); // Usa vars.$accent-color per il bordo
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
 
   mat-card-header {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: vars.$spacing-md; // Usa variabile globale per il margine
   }
 
   .header-icon {
-    color: var(--mat-accent-color); // Colore accento per l'icona nell'header
+    color: vars.$accent-color; // Usa vars.$accent-color invece di var(--mat-accent-color)
     margin-right: 10px;
     font-size: 32px;
     width: 32px;
@@ -32,14 +33,14 @@ $card-bg: #2e2e4a;       // Sfondo più scuro per le card (da styles.scss)
 
   mat-card-title {
     font-size: 1.8rem;
-    color: var(--mat-accent-color); // Colore accento per il titolo
-    font-family: 'Share Tech Mono', monospace; // Font tech per i titoli
+    color: vars.$accent-color; // Usa vars.$accent-color
+    font-family: vars.$font-family-heading; // Usa variabile globale per il font (o 'Share Tech Mono' se preferisci)
   }
 
   ul {
     list-style: none;
     padding: 0;
-    margin: 1rem 0;
+    margin: vars.$spacing-md 0; // Usa variabile globale per il margine
 
     li {
       margin-bottom: 0.5rem;
@@ -50,25 +51,25 @@ $card-bg: #2e2e4a;       // Sfondo più scuro per le card (da styles.scss)
   }
 
   .negative-icon {
-    color: #ff5252; // Un rosso per gli elementi negativi
+    color: vars.$error-color; // Usa vars.$error-color
     margin-right: 8px;
   }
 
   .positive-icon {
-    color: #00e676; // Un verde brillante per gli elementi positivi
+    color: vars.$success-color; // Usa vars.$success-color
     margin-right: 8px;
   }
 
   p {
     font-size: 1.1rem;
     line-height: 1.6;
-    margin-bottom: 1rem;
+    margin-bottom: vars.$spacing-md; // Usa variabile globale per il margine
   }
 
   .conclusione {
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--mat-accent-color); // Colore accento per la conclusione
+    color: vars.$accent-color; // Usa vars.$accent-color
     margin-top: 1.5rem;
     display: flex;
     align-items: center;
@@ -76,10 +77,10 @@ $card-bg: #2e2e4a;       // Sfondo più scuro per le card (da styles.scss)
 }
 
 // Responsive adjustments
-@media (max-width: 768px) {
+@media (max-width: vars.$breakpoint-md) { // Usa variabile globale per il breakpoint
   .why-choose-me-card {
-    margin: 1rem;
-    padding: 1rem;
+    margin: vars.$spacing-md; // Usa variabile globale per il margine
+    padding: vars.$spacing-md; // Usa variabile globale per il padding
   }
 
   mat-card-title {

@@ -1,78 +1,103 @@
 /* src/app/pages/progetti/progetti.component.scss */
 
-// Rimuovi: @use '@angular/material' as mat;
-// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
-
-// Importa le variabili globali dal tuo file _variables.scss
 @use '../../../styles/variables' as vars;
 
 .progetti-section {
-  padding: vars.$spacing-xl vars.$spacing-md; // Usa variabili globali per il padding
+  padding: vars.$spacing-xl vars.$spacing-md;
   display: flex;
   flex-direction: column;
   gap: 2.5rem; // Spazio tra le sezioni
-  align-items: center; // Centra il contenuto
-  font-family: vars.$font-family-base; // Usa variabile globale per il font
-  min-height: calc(100vh - 120px); // Per centrare verticalmente se il contenuto è poco
-  justify-content: center; // Centra verticalmente
+  align-items: center;
+  font-family: vars.$font-family-base;
+  min-height: calc(100vh - 120px);
+  justify-content: center;
 }
 
 .progetti-card {
-  max-width: 700px; // Larghezza massima per la card placeholder
+  max-width: 700px;
   width: 100%;
-  padding: vars.$spacing-lg; // Usa variabile globale per il padding interno
-  background: lighten(vars.$dark-bg, 3%); // Usa vars.$dark-bg
-  color: vars.$text-color; // Usa vars.$text-color
-  border-radius: 12px; // Bordi più arrotondati
-  // Ombra più decisa e con un tocco dell'accent-color per un vibe tech
+  padding: vars.$spacing-lg;
+  background: lighten(vars.$dark-bg, 3%);
+  color: vars.$text-color;
+  border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(vars.$accent-color, 0.5); 
-  border: 1px solid rgba(vars.$accent-color, 0.2); // Bordo sottile per delineare
-  text-align: center; // Centra il testo all'interno della card
+  border: 1px solid rgba(vars.$accent-color, 0.2);
+  text-align: center;
 
   mat-card-header {
-    justify-content: center; // Centra l'header (icona e titolo)
-    margin-bottom: 1.5rem; // Più spazio sotto l'header
-    .mat-mdc-card-header-text { // Specifico per Angular Material 15+
-      margin: 0; // Rimuove margine di default che potrebbe spostare il titolo
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    .mat-mdc-card-header-text {
+      margin: 0;
     }
     mat-icon {
-      font-size: 38px; // Icona più grande
+      font-size: 38px;
       width: 38px;
       height: 38px;
-      margin-right: 0.8rem; // Spazio tra icona e titolo
+      margin-right: 0.8rem;
     }
     mat-card-title {
-      font-size: 2.2rem; // Titolo più grande
-      color: vars.$accent-color; // Usa vars.$accent-color
-      text-shadow: 0 0 18px rgba(vars.$accent-color, 0.7); // Bagliore più intenso per il titolo
-      font-weight: 700; // Bold più pronunciato
+      font-size: 2.2rem;
+      color: vars.$accent-color;
+      text-shadow: 0 0 18px rgba(vars.$accent-color, 0.7);
+      font-weight: 700;
     }
   }
 
   mat-card-content {
     p {
-      font-size: 1.15rem; // Testo più grande per leggibilità
-      line-height: 1.8; // Aumenta l'interlinea
-      color: vars.$light-gray; // Usa vars.$light-gray
-      margin-bottom: 1.2rem; // Spazio tra i paragrafi
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: vars.$light-gray;
+      margin-bottom: 1.2rem;
     }
     strong {
-      color: vars.$accent-color; // Usa vars.$accent-color
+      color: vars.$accent-color;
       font-weight: 700;
-      text-shadow: 0 0 10px rgba(vars.$accent-color, 0.4); // Bagliore per il testo forte
+      text-shadow: 0 0 10px rgba(vars.$accent-color, 0.4);
     }
   }
 }
 
-// Rimuovi gli stili per newsletter-section se non la usi o la sposti
-// .newsletter-section { /* ... */ }
-// .newsletter-section h3 { /* ... */ }
-// button[mat-raised-button] { /* ... */ } // Questi stili saranno gestiti globalmente o dal componente specifico
+/* --- Stili per il pulsante Contattami --- */
+.contact-button-container {
+  margin-top: vars.$spacing-xl; // Spazio sopra il pulsante
+  margin-bottom: vars.$spacing-xl; // Spazio sotto il pulsante, se ci fossero altri elementi
+  
+  button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    
+    // Stili specifici per il pulsante, usando le variabili globali
+    background-color: vars.$primary-color;
+    color: vars.$text-color;
+    box-shadow: 0 5px 15px rgba(vars.$primary-color, 0.4);
+    border: 1px solid rgba(vars.$primary-color, 0.6);
+
+    mat-icon {
+      margin-right: 8px;
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+
+    &:hover {
+      background-color: darken(vars.$primary-color, 10%);
+      box-shadow: 0 8px 25px rgba(vars.$primary-color, 0.6);
+      transform: translateY(-3px);
+    }
+  }
+}
+
 
 /* --- Media Query per Responsività --- */
-@media (max-width: vars.$breakpoint-md) { // Usa vars.$breakpoint-md
+@media (max-width: vars.$breakpoint-md) {
   .progetti-section {
-    padding: vars.$spacing-lg vars.$spacing-md; // Usa variabili globali per il padding
+    padding: vars.$spacing-lg vars.$spacing-md;
     gap: 1.5rem;
   }
 
@@ -94,6 +119,15 @@
         font-size: 1rem;
         line-height: 1.6;
       }
+    }
+  }
+  .contact-button-container button {
+    font-size: 1rem;
+    padding: 0.7rem 1.5rem;
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
     }
   }
 }

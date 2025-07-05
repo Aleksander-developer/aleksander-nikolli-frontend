@@ -1,32 +1,22 @@
 <!-- src/app/pages/progetti/progetti.component.html -->
 <section class="progetti-section">
-  <mat-card class="progetti-card mat-elevation-z4"> <!-- Aggiunto mat-elevation-z4 per l'ombra -->
+  <mat-card class="progetti-card mat-elevation-z4">
     <mat-card-header>
-      <mat-icon color="accent">lock</mat-icon> <!-- Icona e colore accentuato -->
+      <mat-icon color="accent">lock</mat-icon>
       <mat-card-title>Progetti</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>
-        Alcuni dei progetti su cui sto lavorando attualmente non sono ancora pubblici. <br />
-        Alcuni sono in fase di lancio, altri sotto NDA o in ambienti di test.
-      </p>
-      <p>
-        Presto potrò condividere approfondimenti tecnici, mockup e risultati concreti – con focus su sviluppo
-        <strong>frontend/backend</strong>, UX e automazioni.
-      </p>
-      <p>
-        <strong>🔒 La qualità c’è, anche se per ora resta dietro le quinte.</strong>
-      </p>
+      <p> Alcuni dei progetti su cui sto lavorando attualmente non sono ancora pubblici. <br> Alcuni sono in fase di lancio, altri sotto NDA o in ambienti di test. </p>
+      <p> Presto potrò condividere approfondimenti tecnici, mockup e risultati concreti – con focus su sviluppo <strong>frontend/backend</strong>, UX e automazioni. </p>
+      <p><strong>🔒 La qualità c’è, anche se per ora resta dietro le quinte.</strong></p>
     </mat-card-content>
   </mat-card>
 
-  <!-- La sezione newsletter rimane commentata come nel tuo vecchio file -->
-  <!-- <div class="newsletter-section">
-    <h3><mat-icon>mail</mat-icon> Rimani aggiornato</h3>
-    <p>
-      Vuoi sapere quando i progetti saranno online?<br />
-      Iscriviti alla mia newsletter per ricevere anteprime, articoli tecnici e aggiornamenti esclusivi.
-    </p>
-    <button mat-raised-button color="primary">Iscriviti alla newsletter</button>
-  </div> -->
+  <!-- Nuovo pulsante Contattami -->
+  <div class="contact-button-container">
+    <button mat-raised-button color="accent" (click)="goToContatti()">
+      <mat-icon>mail_outline</mat-icon> Contattami
+    </button>
+  </div>
+
 </section>
