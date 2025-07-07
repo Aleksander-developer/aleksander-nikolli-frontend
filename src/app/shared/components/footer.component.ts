@@ -1,7 +1,7 @@
 // src/app/shared/components/footer/footer.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'; // Importa DomSanitizer e SafeResourceUrl
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-footer',
@@ -17,19 +17,16 @@ export class FooterComponent implements OnInit {
   facebookUrl: string = 'https://www.facebook.com/share/1AgfrE24jU/?mibextid=wwXIfr';
 
   whatsappNumber: string = '393463515173'; // Numero WhatsApp senza il '+'
+  phoneNumber: string = '393463515173';
   emailAddress: string = 'aleksandernikollibusiness@gmail.com';
 
-  // Dichiarazione e INIZIALIZZAZIONE della proprietà per la URL di WhatsApp sanificata
-  whatsappLink: SafeResourceUrl; 
+  whatsappLink: SafeResourceUrl;
 
-  // Inietta DomSanitizer nel costruttore
   constructor(private sanitizer: DomSanitizer) {
-    // Sanifica la URL di WhatsApp QUI, nel costruttore
-    // Tutte le proprietà necessarie (this.whatsappNumber) sono già disponibili.
     this.whatsappLink = this.sanitizer.bypassSecurityTrustResourceUrl(`https://wa.me/${this.whatsappNumber}`);
   }
 
   ngOnInit(): void {
-    // Se non hai altre logiche qui, puoi anche rimuovere ngOnInit e implements OnInit
+    // In altre logiche è pronto 
   }
 }

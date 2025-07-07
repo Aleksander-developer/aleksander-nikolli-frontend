@@ -18,6 +18,9 @@
     <a [href]="whatsappLink" target="_blank" aria-label="WhatsApp Chat" mat-icon-button>
       <i class="fab fa-whatsapp"></i>
     </a>
+    <a [href]="'tel:' + phoneNumber" aria-label="Call Phone" mat-icon-button>
+      <mat-icon>phone</mat-icon>
+    </a>
   </div>
 
   <div class="footer-separator"></div>
@@ -43,6 +46,10 @@
       <div class="tech-item">
         <mat-icon class="tech-icon">speed</mat-icon>
         <span class="tech-name">Express</span>
+      </div>
+      <div class="tech-item">
+        <mat-icon class="tech-icon">dns</mat-icon>
+        <span class="tech-name">MySQL</span>
       </div>
     </div>
   </div>

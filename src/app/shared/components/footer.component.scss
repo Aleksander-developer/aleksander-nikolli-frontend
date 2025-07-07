@@ -1,23 +1,19 @@
 /* src/app/shared/components/footer/footer.component.scss */
 
-// Rimuovi: @use '@angular/material' as mat;
-// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
-
-// Importa le variabili globali dal tuo file _variables.scss
 @use '../../../styles/variables' as vars;
 
 /* --- Layout Principale del Footer --- */
 .footer-container {
-  background: vars.$dark-bg; // Usa vars.$dark-bg
-  color: vars.$text-color; // Usa vars.$text-color
-  font-family: vars.$font-family-base; // Usa variabile globale per il font
-  padding: vars.$spacing-lg vars.$spacing-md; // Usa variabili globali per il padding
+  background: vars.$dark-bg;
+  color: vars.$text-color;
+  font-family: vars.$font-family-base;
+  padding: vars.$spacing-lg vars.$spacing-md;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.25);
-  border-top: 1px solid rgba(vars.$accent-color, 0.2); // Usa vars.$accent-color
+  border-top: 1px solid rgba(vars.$accent-color, 0.2);
 }
 
 /* --- Sezione Icone Social --- */
@@ -28,23 +24,23 @@
   gap: 0.75rem;
 
   a {
-    color: vars.$light-gray; // Usa vars.$light-gray
+    color: vars.$light-gray;
     font-size: 26px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
 
-    i, mat-icon {
+    i, mat-icon { /* Questo selettore catturerà anche la nuova mat-icon per il telefono */
       font-size: 26px;
       width: 26px;
       height: 26px;
     }
 
     &:hover {
-      color: vars.$accent-color; // Usa vars.$accent-color
+      color: vars.$accent-color;
       transform: translateY(-4px);
-      text-shadow: 0 0 12px vars.$shadow-glow-color; // Usa vars.$shadow-glow-color
+      text-shadow: 0 0 12px vars.$shadow-glow-color;
     }
   }
 }
@@ -54,7 +50,7 @@
   height: 1px;
   width: 80%;
   max-width: 500px;
-  background: linear-gradient(to right, transparent, rgba(vars.$accent-color, 0.4), transparent); // Usa vars.$accent-color
+  background: linear-gradient(to right, transparent, rgba(vars.$accent-color, 0.4), transparent);
 }
 
 /* --- Barra Inferiore (Copyright & Tech) --- */
@@ -66,7 +62,7 @@
   align-items: center;
   flex-wrap: wrap;
   font-size: 0.8rem;
-  color: vars.$light-gray; // Usa vars.$light-gray
+  color: vars.$light-gray;
 }
 
 .footer-copyright {
@@ -97,18 +93,18 @@
   font-size: 20px;
   width: 20px;
   height: 20px;
-  color: vars.$accent-color; // Usa vars.$accent-color
+  color: vars.$accent-color;
   opacity: 0.9;
 }
 
 .tech-name {
   font-size: 0.8rem;
-  color: vars.$light-gray; // Usa vars.$light-gray
+  color: vars.$light-gray;
   white-space: nowrap;
 }
 
 /* --- Media Query per Responsività --- */
-@media (max-width: vars.$breakpoint-md) { // Usa variabile globale per il breakpoint
+@media (max-width: vars.$breakpoint-md) {
   .footer-bottom-bar {
     flex-direction: column;
     justify-content: center;
@@ -117,7 +113,7 @@
   }
 }
 
-@media (min-width: 769px) { // Questo breakpoint è hardcoded, potresti volerlo in vars.$breakpoint-md o vars.$breakpoint-lg
+@media (min-width: 769px) {
   .footer-tech-stack {
     justify-content: flex-end;
   }

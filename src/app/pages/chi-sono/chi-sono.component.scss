@@ -185,11 +185,12 @@
           position: absolute;
           left: 50%;
           bottom: 0;
-          width: 0;
+          width: 0; // Inizialmente non visibile (l'animazione lo farà apparire)
           height: 2px;
           background-color: vars.$primary-color;
-          transition: all 0.3s ease-in-out;
+          transition: none; /* Rimuovi la transizione, l'animazione la gestisce */
           transform: translateX(-50%);
+          animation: animated-underline 2s infinite ease-in-out; /* Applica l'animazione globalmente */
         }
 
         &:hover {
@@ -198,8 +199,9 @@
           cursor: pointer;
           background-color: rgba(vars.$accent-color, 0.1); 
 
+          // Rimuovi l'espansione della larghezza all'hover per evitare conflitti con l'animazione
           &::after {
-            width: 100%;
+            // width: 100%; // Rimosso
           }
         }
       }
@@ -212,7 +214,7 @@
   }
 }
 
-// Media Query per la responsività
+// Media Query per la responsività (solo per aggiustamenti specifici, non per l'animazione)
 @media (max-width: vars.$breakpoint-md) {
   .chi-sono-card {
     margin: 1.5rem 1rem;
@@ -266,28 +268,22 @@
 
       p {
         .contact-link {
-          // Rimuovi gli effetti hover per mobile, li sostituiremo con l'animazione
+          // Rimuovi gli effetti hover specifici per mobile, dato che non funzionano su touch
           &:hover {
             transform: none;
             background-color: transparent;
-            text-shadow: 0 0 15px rgba(vars.$accent-color, 0.8); // Mantieni il bagliore base
-            &::after {
-              width: 0; // Rimuovi l'espansione all'hover
-            }
+            text-shadow: 0 0 15px rgba(vars.$accent-color, 0.8);
           }
-
-          // Applica l'animazione solo su schermi piccoli
-          &::after {
-            animation: mobile-underline 2s infinite ease-in-out; // Animazione a intervalli
-          }
+          // La proprietà animation è già globale, non serve ripeterla qui.
+          // Rimuovi anche la transizione da ::after qui se presente.
         }
       }
     }
   }
 }
 
-/* --- Animazione per la sottolineatura su mobile --- */
-@keyframes mobile-underline {
+/* --- Animazione per la sottolineatura (globale) --- */
+@keyframes animated-underline { /* Rinominato per chiarezza */
   0% {
     width: 0;
     opacity: 0;
