@@ -36,12 +36,26 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- Messaggio di successo -->
     <div *ngIf="successMessage" class="success-message">
-      {{ successMessage }}
+      <mat-icon>check_circle_outline</mat-icon> {{ successMessage }}
     </div>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">
-      Invia
+    <!-- Messaggio di errore (se presente) -->
+    <div *ngIf="errorMessage" class="error-message-ui">
+      <mat-icon>error_outline</mat-icon> {{ errorMessage }}
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid || isLoading">
+      <!-- NUOVO: Avvolgi spinner e testo in un div per un migliore controllo del layout -->
+      <div *ngIf="isLoading" class="button-loading-content">
+        <mat-spinner diameter="20"></mat-spinner>
+        <span>Invio in corso...</span>
+      </div>
+      <!-- Mostra testo "Invia" quando isLoading è false -->
+      <ng-container *ngIf="!isLoading">
+        Invia
+      </ng-container>
     </button>
   </form>
 </section>

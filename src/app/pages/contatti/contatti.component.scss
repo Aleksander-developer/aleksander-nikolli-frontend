@@ -1,30 +1,26 @@
 /* src/app/pages/contatti/contatti.component.scss */
 
-// Rimuovi: @use '@angular/material' as mat;
-// Rimuovi tutte le definizioni di variabili locali come $dark-bg, $accent-color, ecc.
-
-// Importa le variabili globali dal tuo file _variables.scss
 @use '../../../styles/variables' as vars;
 
 .contatti-container {
   max-width: 700px;
-  margin: vars.$spacing-xl auto; // Usa variabile globale per il margine
+  margin: vars.$spacing-xl auto;
   padding: 2.5rem;
-  background: lighten(vars.$dark-bg, 3%); // Usa vars.$dark-bg
-  color: vars.$text-color; // Usa vars.$text-color
+  background: lighten(vars.$dark-bg, 3%);
+  color: vars.$text-color;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(vars.$accent-color, 0.5); 
   border: 1px solid rgba(vars.$accent-color, 0.2);
-  font-family: vars.$font-family-base; // Usa variabile globale per il font
+  font-family: vars.$font-family-base;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: vars.$spacing-lg; // Usa variabile globale per il margine
-  font-family: vars.$font-family-base; // Usa variabile globale per il font
+  margin-bottom: vars.$spacing-lg;
+  font-family: vars.$font-family-base;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: vars.$accent-color; // Usa vars.$accent-color
+  color: vars.$accent-color;
   text-shadow: 0 0 15px rgba(vars.$accent-color, 0.6);
   font-size: 2.2rem;
 }
@@ -38,31 +34,31 @@ form.contact-form {
     width: 100%;
 
     .mat-form-field-outline {
-      color: rgba(vars.$accent-color, 0.5); // Usa vars.$accent-color
+      color: rgba(vars.$accent-color, 0.5);
     }
 
     &.mat-focused .mat-form-field-outline {
-      color: vars.$accent-color; // Usa vars.$accent-color
+      color: vars.$accent-color;
     }
 
     .mat-form-field-label {
-      color: vars.$light-gray !important; // Usa vars.$light-gray
-      font-family: vars.$font-family-base; // Usa variabile globale per il font
+      color: vars.$light-gray !important;
+      font-family: vars.$font-family-base;
       font-size: 1.05rem;
     }
 
     input, textarea {
-      color: vars.$text-color; // Usa vars.$text-color
+      color: vars.$text-color;
       background-color: transparent;
-      font-family: vars.$font-family-base; // Usa variabile globale per il font
-      caret-color: vars.$accent-color; // Usa vars.$accent-color
+      font-family: vars.$font-family-base;
+      caret-color: vars.$accent-color;
       font-size: 1.1rem;
     }
 
     .mat-error {
       font-size: 0.9rem;
-      color: vars.$error-color; // Usa vars.$error-color
-      font-family: vars.$font-family-base; // Usa variabile globale per il font
+      color: vars.$error-color;
+      font-family: vars.$font-family-base;
       margin-top: 0.5rem;
     }
   }
@@ -70,15 +66,49 @@ form.contact-form {
   .success-message {
     margin: 1.5rem 0;
     padding: 15px 25px;
-    background-color: rgba(vars.$success-color, 0.2); // Usa vars.$success-color
-    color: vars.$success-color; // Usa vars.$success-color
+    background-color: rgba(vars.$success-color, 0.2);
+    color: vars.$success-color;
     font-weight: 700;
-    font-family: vars.$font-family-base; // Usa variabile globale per il font
+    font-family: vars.$font-family-base;
     border-radius: 8px;
     box-shadow: 0 5px 20px rgba(vars.$success-color, 0.5);
     text-align: center;
     font-size: 1.2rem;
-    border: 1px solid vars.$success-color; // Usa vars.$success-color
+    border: 1px solid vars.$success-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .error-message-ui {
+    margin: 1.5rem 0;
+    padding: 15px 25px;
+    background-color: rgba(vars.$error-color, 0.2);
+    color: vars.$error-color;
+    font-weight: 700;
+    font-family: vars.$font-family-base;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(vars.$error-color, 0.5);
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid vars.$error-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+    }
   }
 
   button {
@@ -87,30 +117,56 @@ form.contact-form {
     height: 50px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    font-family: vars.$font-family-base; // Usa variabile globale per il font
+    font-family: vars.$font-family-base;
     border-radius: 8px;
     text-transform: uppercase;
     
-    background-color: vars.$primary-color; // Usa vars.$primary-color
+    background-color: vars.$primary-color;
     box-shadow: 0 5px 20px rgba(vars.$primary-color, 0.4);
+    
+    &[disabled] {
+      background-color: vars.$light-gray;
+      color: darken(vars.$light-gray, 30%);
+      cursor: not-allowed;
+      box-shadow: none;
+      opacity: 0.7;
+      
+      // Il pulsante stesso è un flexbox, ma il contenuto interno ora è gestito da .button-loading-content
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    // NUOVO: Stili per il div che contiene spinner e testo
+    .button-loading-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px; /* Spazio tra spinner e testo */
+      width: 100%; /* Assicura che prenda tutta la larghezza disponibile nel pulsante */
+      height: 100%; /* Assicura che prenda tutta l'altezza disponibile nel pulsante */
+
+      mat-spinner {
+        margin: 0; /* Rimuovi qualsiasi margine predefinito dallo spinner */
+        flex-shrink: 0; /* Impedisce allo spinner di rimpicciolirsi */
+      }
+
+      span {
+        flex-grow: 1; /* Permette al testo di espandersi */
+        text-align: center; /* Centra il testo all'interno del suo spazio */
+      }
+    }
 
     &:hover:not(:disabled) {
-      background-color: darken(vars.$primary-color, 10%); // Usa vars.$primary-color
+      background-color: darken(vars.$primary-color, 10%);
       box-shadow: 0 8px 30px rgba(vars.$primary-color, 0.7);
       transform: translateY(-3px);
       transition: all 0.3s ease;
     }
-
-    &:disabled {
-      background-color: vars.$light-gray; // Usa vars.$light-gray
-      color: darken(vars.$light-gray, 30%); // Usa vars.$light-gray
-      cursor: not-allowed;
-      box-shadow: none;
-    }
   }
 }
 
-@media (max-width: vars.$breakpoint-md) { // Usa variabile globale per il breakpoint
+@media (max-width: vars.$breakpoint-md) {
   .contatti-container {
     margin: 1.5rem;
     padding: 1.5rem;

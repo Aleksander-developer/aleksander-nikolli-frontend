@@ -1,19 +1,20 @@
 // src/app/pages/contatti/contatti.component.ts
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core'; // Aggiunto OnInit per chiarezza, anche se non strettamente usato
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../../environments/environment.prod';
-// import { environment } from '../../../../environments/environment'; // Percorso corretto per environment
+import { environment } from '../../../environments/environment'; // Usa l'ambiente corretto
 
 @Component({
   selector: 'app-contatti',
-  templateUrl: './contatti.component.html', // Corretto il nome del file template
-  styleUrls: ['./contatti.component.scss'] // Corretto il nome del file style
+  templateUrl: './contatti.component.html',
+  styleUrls: ['./contatti.component.scss']
 })
-export class ContattiComponent implements OnInit { // Rinomina la classe e implementa OnInit
+export class ContattiComponent implements OnInit {
   contactForm: FormGroup;
   successMessage: string = '';
+  errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -28,33 +29,61 @@ export class ContattiComponent implements OnInit { // Rinomina la classe e imple
     });
   }
 
-  ngOnInit(): void {
-    // Qui puoi aggiungere logica di inizializzazione se necessaria
-  }
+  ngOnInit(): void { }
 
   onSubmit() {
+    this.successMessage = '';
+    this.errorMessage = '';
+
     if (this.contactForm.valid) {
+      this.isLoading = true; // Imposta isLoading a true all'inizio della richiesta
       const formData = this.contactForm.value;
 
-      // Log per debug (rimuovere in produzione)
       console.log('Invio dati:', formData);
 
       this.http.post(`${environment.apiUrl}/contatti`, formData).subscribe({
         next: () => {
           this.successMessage = 'Messaggio inviato con successo!';
-          this.contactForm.reset();
-          this.contactForm.markAsPristine();
-          this.contactForm.markAsUntouched();
+          
+          // --- LOGICA DI RESET DEFINITIVA E FORZATA ---
+          // Resetta il form a valori vuoti
+          this.contactForm.reset({
+            nome: '',
+            email: '',
+            cellulare: '',
+            messaggio: ''
+          });
+
+          // Forza il reset dello stato di validazione e aggiornamento della UI
+          // Usiamo un piccolo setTimeout per dare tempo ad Angular di processare il reset iniziale
+          // e poi forzare un nuovo ciclo di change detection.
+          setTimeout(() => {
+            Object.keys(this.contactForm.controls).forEach(key => {
+              const control = this.contactForm.get(key);
+              control?.markAsPristine(); // Imposta il controllo come "pulito"
+              control?.markAsUntouched(); // Imposta il controllo come "non toccato"
+              control?.updateValueAndValidity({ emitEvent: false }); // Forza la ri-validazione senza emettere eventi
+            });
+            // Marca l'intero form come pristine e untouched
+            this.contactForm.markAsPristine();
+            this.contactForm.markAsUntouched();
+            this.contactForm.updateValueAndValidity({ emitEvent: false });
+          }, 0); // Un timeout di 0ms mette la funzione in coda d'evento, dopo il ciclo corrente.
+
           setTimeout(() => this.successMessage = '', 5000);
         },
         error: (error) => {
-          console.error('Errore invio messaggio:', error); // Log dell'errore completo
+          console.error('Errore invio messaggio:', error);
+          this.errorMessage = 'Errore durante l\'invio del messaggio. Riprova.'; // Messaggio per la UI
           this.snackBar.open('Errore durante l\'invio. Riprova.', 'Chiudi', { duration: 5000 });
+        },
+        complete: () => {
+          this.isLoading = false; // Imposta isLoading a false alla fine della richiesta (successo o errore)
         }
       });
     } else {
-      // Per mostrare gli errori immediatamente se il form non è valido al submit
-      this.contactForm.markAllAsTouched(); 
+      // Se il form non è valido al submit, marca tutti i campi come touched per mostrare gli errori
+      this.contactForm.markAllAsTouched();
     }
   }
 }
