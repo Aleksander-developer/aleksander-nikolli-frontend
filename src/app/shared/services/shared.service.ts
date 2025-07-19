@@ -4,39 +4,51 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment'; // IMPORTANTE: Importa l'ambiente GENERALE
 
-
-
+// Interfaccia per il modello Progetto (allineata con il backend IProgetto)
 export interface Progetto {
-  _id: string; // Mongo ID
+  _id: string; // MongoDB ID
   titolo: string;
-  descrizione?: string; 
-  tecnologie?: string[];
+  descrizione: string; // Reso obbligatorio come nel backend
+  tecnologie: string[]; // Reso obbligatorio come nel backend
   linkDemo?: string;
   linkRepo?: string;
-  immagine?: string; // Corretto da immagineUrl
-  data?: string; 
+  immagine?: string;
+  dataCreazione: Date; // Corretto a 'dataCreazione' e tipo 'Date' come nel backend
+  caratteristiche: string[]; // NUOVO: Array di stringhe per le funzionalità specifiche
+  visibile: boolean; // NUOVO: Flag per controllare la visibilità
+  keywordsSeo?: string[]; // NUOVO: Array di stringhe per le parole chiave SEO
+  // NUOVI CAMPI per dettagli approfonditi del progetto
+  sfideAffrontate?: string[];
+  soluzioniImplementate?: string[];
+  risultatiChiave?: string[];
+  architettura?: string;
+  fasiDiSviluppo?: string[];
+  targetAudience?: string;
+  aspectsCovered?: string[];
 }
 
+// Interfaccia per ChiSonoContent
 export interface ChiSonoContent {
   _id: string;
   contenuto: string;
   aggiornata?: string; // Data di aggiornamento
 }
 
+// Interfaccia per ContattoPayload (dati inviati al backend nel form di contatto)
 export interface ContattoPayload {
-  // Questa interfaccia è per i dati che invio al backend nel form di contatto
   nome: string;
   email: string;
   messaggio: string;
   cellulare?: string; // Cellulare è opzionale nel backend
 }
 
+// Interfaccia per ContattoResponse (risposta dal backend)
 export interface ContattoResponse extends ContattoPayload {
-  // Questa interfaccia è per la risposta dal backend, include anche l'ID e la data
   _id: string;
   data?: string;
 }
 
+// Interfaccia per Servizio
 export interface Servizio {
   _id: string;
   titolo: string;
@@ -59,10 +71,12 @@ export class SharedService {
   }
 
   getProgettoById(id: string): Observable<Progetto> {
-    // La tua rotta progetti.routes.ts ha router.get('/:id', getProgettoById); commentata.
-    // Se la scommenterai, questo metodo funzionerà.
-    // Per ora, lascio il metodo qui per futura implementazione.
     return this.http.get<Progetto>(`${this.apiUrl}/progetti/${id}`);
+  }
+
+  // Metodo per aggiungere un nuovo progetto (utilizzato dal Portfolio Manager, se lo implementerai)
+  addProgetto(progetto: Progetto): Observable<Progetto> {
+    return this.http.post<Progetto>(`${this.apiUrl}/progetti`, progetto);
   }
 
   // --- Metodi per Chi Sono ---

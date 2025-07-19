@@ -9,7 +9,7 @@
   background: lighten(vars.$dark-bg, 3%);
   color: vars.$text-color;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(vars.$accent-color, 0.5); 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(vars.$accent-color, 0.5);
   border: 1px solid rgba(vars.$accent-color, 0.2);
 
   mat-card-title {
@@ -39,6 +39,16 @@
     strong {
       color: vars.$accent-color;
       font-weight: 700;
+    }
+
+    // Stile per il testo sottolineato
+    .underline-text {
+      color: vars.$accent-color; // Mantiene il colore dell'accento
+      font-weight: 700; // Mantiene il grassetto per enfasi
+      text-decoration: underline; // Applica la sottolineatura
+      text-decoration-color: vars.$primary-color; // Colore della sottolineatura
+      text-underline-offset: 4px; // Distanza della sottolineatura dal testo
+      text-decoration-thickness: 2px; // Spessore della sottolineatura
     }
 
     ul {
@@ -137,7 +147,7 @@
     height: auto;
     display: block;
     border-radius: 10px 10px 0 0;
-    filter: brightness(0.9) contrast(1.1); 
+    filter: brightness(0.9) contrast(1.1);
     transition: filter 0.3s ease;
 
     &:hover {
@@ -172,7 +182,7 @@
         color: vars.$accent-color;
         text-decoration: none;
         font-weight: 700;
-        text-shadow: 0 0 15px rgba(vars.$accent-color, 0.8); 
+        text-shadow: 0 0 15px rgba(vars.$accent-color, 0.8);
         transition: all 0.3s ease-in-out;
         display: inline-block;
         padding: 0.2em 0.4em;
@@ -185,36 +195,72 @@
           position: absolute;
           left: 50%;
           bottom: 0;
-          width: 0; // Inizialmente non visibile (l'animazione lo farà apparire)
+          width: 0;
           height: 2px;
           background-color: vars.$primary-color;
-          transition: none; /* Rimuovi la transizione, l'animazione la gestisce */
+          transition: none;
           transform: translateX(-50%);
-          animation: animated-underline 2s infinite ease-in-out; /* Applica l'animazione globalmente */
+          animation: animated-underline 2s infinite ease-in-out;
         }
 
         &:hover {
-          text-shadow: 0 0 25px rgba(vars.$accent-color, 1); 
+          text-shadow: 0 0 25px rgba(vars.$accent-color, 1);
           transform: scale(1.07);
           cursor: pointer;
-          background-color: rgba(vars.$accent-color, 0.1); 
-
-          // Rimuovi l'espansione della larghezza all'hover per evitare conflitti con l'animazione
-          &::after {
-            // width: 100%; // Rimosso
-          }
+          background-color: rgba(vars.$accent-color, 0.1);
         }
       }
 
       strong {
-        color: vars.$accent-color; 
+        color: vars.$accent-color;
         text-shadow: 0 0 10px rgba(vars.$accent-color, 0.5);
+      }
+    }
+  }
+
+  // Stili per le lingue
+  .language-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+
+    .language-item {
+      background-color: lighten(vars.$dark-bg, 5%);
+      border: 1px solid rgba(vars.$accent-color, 0.3);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.05rem;
+      color: vars.$text-color;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(rgba(vars.$accent-color, 0.4), 0.6);
+      }
+
+      .language-name {
+        font-weight: 600;
+        color: vars.$accent-color;
+      }
+
+      .language-flag {
+        font-size: 1.4rem;
+      }
+
+      .language-level {
+        font-style: italic;
+        color: vars.$light-gray;
       }
     }
   }
 }
 
-// Media Query per la responsività (solo per aggiustamenti specifici, non per l'animazione)
+// Media Query per la responsività
 @media (max-width: vars.$breakpoint-md) {
   .chi-sono-card {
     margin: 1.5rem 1rem;
@@ -241,7 +287,7 @@
       padding: 0.4rem 0.8rem;
       ::ng-deep .mat-mdc-chip-action-label,
       ::ng-deep .mdc-evolution-chip__text-content {
-        color: vars.$text-color; 
+        color: vars.$text-color;
       }
     }
 
@@ -253,7 +299,7 @@
       grid-template-columns: 1fr;
       gap: 1.5rem;
     }
-    
+
     .attestato-item {
       padding-bottom: 0.8rem;
       .attestato-caption {
@@ -262,20 +308,27 @@
     }
 
     .final-note {
-      margin-top: 2rem; 
+      margin-top: 2rem;
       padding: 1.2rem;
       font-size: 1rem;
 
       p {
         .contact-link {
-          // Rimuovi gli effetti hover specifici per mobile, dato che non funzionano su touch
           &:hover {
             transform: none;
             background-color: transparent;
             text-shadow: 0 0 15px rgba(vars.$accent-color, 0.8);
           }
-          // La proprietà animation è già globale, non serve ripeterla qui.
-          // Rimuovi anche la transizione da ::after qui se presente.
+        }
+      }
+    }
+
+    .language-content {
+      grid-template-columns: 1fr;
+      .language-item {
+        font-size: 1rem;
+        .language-flag {
+          font-size: 1.2rem;
         }
       }
     }
@@ -283,7 +336,7 @@
 }
 
 /* --- Animazione per la sottolineatura (globale) --- */
-@keyframes animated-underline { /* Rinominato per chiarezza */
+@keyframes animated-underline {
   0% {
     width: 0;
     opacity: 0;

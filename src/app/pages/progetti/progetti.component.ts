@@ -1,7 +1,6 @@
 // src/app/pages/progetti/progetti.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Importa Router
-// Importa SharedService e l'interfaccia Progetto dal tuo service unificato
+import { Router } from '@angular/router';
 import { SharedService, Progetto } from '../../shared/services/shared.service';
 
 @Component({
@@ -14,10 +13,9 @@ export class ProgettiComponent implements OnInit {
   loading = true;
   errore = '';
 
-  // Inietta SharedService e Router
   constructor(
     private sharedService: SharedService,
-    private router: Router // Inietta Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +36,6 @@ export class ProgettiComponent implements OnInit {
     });
   }
 
-  // Metodo per navigare alla pagina dei contatti
   goToContatti(): void {
     this.router.navigate(['/contatti']);
   }

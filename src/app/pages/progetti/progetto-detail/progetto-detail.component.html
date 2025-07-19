@@ -16,6 +16,61 @@
           {{ tech }}
         </mat-chip-row>
       </mat-chip-listbox>
+
+      <!-- Sezione per le funzionalità/caratteristiche -->
+      <ng-container *ngIf="progettoData.caratteristiche && progettoData.caratteristiche.length > 0">
+        <h3>Funzionalità Principali</h3>
+        <ul>
+          <li *ngFor="let feature of progettoData.caratteristiche">{{ feature }}</li>
+        </ul>
+      </ng-container>
+
+      <!-- NUOVI BLOCCHI PER I DETTAGLI AGGIUNTIVI -->
+      <ng-container *ngIf="progettoData.sfideAffrontate && progettoData.sfideAffrontate.length > 0">
+        <h3>Sfide Affrontate</h3>
+        <ul>
+          <li *ngFor="let challenge of progettoData.sfideAffrontate">{{ challenge }}</li>
+        </ul>
+      </ng-container>
+
+      <ng-container *ngIf="progettoData.soluzioniImplementate && progettoData.soluzioniImplementate.length > 0">
+        <h3>Soluzioni Implementate</h3>
+        <ul>
+          <li *ngFor="let solution of progettoData.soluzioniImplementate">{{ solution }}</li>
+        </ul>
+      </ng-container>
+
+      <ng-container *ngIf="progettoData.risultatiChiave && progettoData.risultatiChiave.length > 0">
+        <h3>Risultati Chiave</h3>
+        <ul>
+          <li *ngFor="let result of progettoData.risultatiChiave">{{ result }}</li>
+        </ul>
+      </ng-container>
+
+      <ng-container *ngIf="progettoData.architettura">
+        <h3>Architettura</h3>
+        <p>{{ progettoData.architettura }}</p>
+      </ng-container>
+
+      <ng-container *ngIf="progettoData.fasiDiSviluppo && progettoData.fasiDiSviluppo.length > 0">
+        <h3>Fasi di Sviluppo</h3>
+        <ul>
+          <li *ngFor="let phase of progettoData.fasiDiSviluppo">{{ phase }}</li>
+        </ul>
+      </ng-container>
+
+      <ng-container *ngIf="progettoData.targetAudience">
+        <h3>Target Audience</h3>
+        <p>{{ progettoData.targetAudience }}</p>
+      </ng-container>
+
+      <ng-container *ngIf="progettoData.aspectsCovered && progettoData.aspectsCovered.length > 0">
+        <h3>Aspetti Coperti</h3>
+        <ul>
+          <li *ngFor="let aspect of progettoData.aspectsCovered">{{ aspect }}</li>
+        </ul>
+      </ng-container>
+
     </mat-card-content>
 
     <mat-card-actions class="project-links">

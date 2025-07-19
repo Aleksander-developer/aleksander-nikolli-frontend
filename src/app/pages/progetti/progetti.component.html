@@ -6,9 +6,50 @@
       <mat-card-title>Progetti</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p> Alcuni dei progetti su cui sto lavorando attualmente non sono ancora pubblici. <br> Alcuni sono in fase di lancio, altri sotto NDA o in ambienti di test. </p>
-      <p> Presto potrò condividere approfondimenti tecnici, mockup e risultati concreti – con focus su sviluppo <strong>frontend/backend</strong>, UX e automazioni. </p>
-      <p><strong>🔒 La qualità c’è, anche se per ora resta dietro le quinte.</strong></p>
+      <!-- Mostra i progetti solo se l'array 'progetti' non è vuoto e non c'è un errore -->
+      <div *ngIf="progetti.length > 0 && !loading && !errore; else noProjectsOrLoading">
+        <p>Ecco alcuni dei miei progetti più recenti:</p>
+        <div class="projects-grid">
+          <!-- Itera su ogni progetto e crea una card -->
+          <mat-card *ngFor="let progetto of progetti" class="project-item mat-elevation-z2" [routerLink]="['/progetti', progetto._id]">
+            <!-- Immagine del progetto con fallback -->
+            <img mat-card-image [src]="progetto.immagine || 'https://placehold.co/400x250/1a1a2e/00bcd4?text=Progetto'" [alt]="progetto.titolo" />
+            <mat-card-title>{{ progetto.titolo }}</mat-card-title>
+            <mat-card-content>
+              <!-- Descrizione troncata per la lista -->
+              <p>{{ progetto.descrizione | slice:0:100 }}...</p>
+              <mat-chip-listbox aria-label="Tecnologie usate" class="tech-chips-container">
+                <mat-chip-row *ngFor="let tech of progetto.tecnologie | slice:0:3" color="primary">
+                  {{ tech }}
+                </mat-chip-row>
+                <mat-chip-row *ngIf="progetto.tecnologie.length > 3" color="primary">
+                  +{{ progetto.tecnologie.length - 3 }}
+                </mat-chip-row>
+              </mat-chip-listbox>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button color="primary" [routerLink]="['/progetti', progetto._id]">Vedi Dettagli</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- Template per il caricamento, l'errore o nessun progetto -->
+      <ng-template #noProjectsOrLoading>
+        <div *ngIf="loading" class="loading-spinner">
+          <mat-spinner color="accent"></mat-spinner>
+          <p>Caricamento progetti...</p>
+        </div>
+        <div *ngIf="errore" class="error-message mat-elevation-z2">
+          <mat-icon color="warn">error_outline</mat-icon>
+          <p>{{ errore }}</p>
+        </div>
+        <div *ngIf="!loading && !errore && progetti.length === 0">
+          <p> Alcuni dei progetti su cui sto lavorando attualmente non sono ancora pubblici. <br> Alcuni sono in fase di lancio, altri sotto NDA o in ambienti di test. </p>
+          <p> Presto potrò condividere approfondimenti tecnici, mockup e risultati concreti – con focus su sviluppo <strong>frontend/backend</strong>, UX e automazioni. </p>
+          <p><strong>🔒 La qualità c’è, anche se per ora resta dietro le quinte.</strong></p>
+        </div>
+      </ng-template>
     </mat-card-content>
   </mat-card>
 
@@ -18,5 +59,4 @@
       <mat-icon>mail_outline</mat-icon> Contattami
     </button>
   </div>
-
 </section>
